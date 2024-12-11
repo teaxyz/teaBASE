@@ -381,37 +381,100 @@
 
 - (IBAction)configureSSHPassphraseICloudKeychainIntegration:(NSSwitch *)sender {
     NSURL *home = [NSFileManager.defaultManager homeDirectoryForCurrentUser];
-    NSString *ssh_config = [home.path stringByAppendingPathComponent: @".ssh/config"];
+    NSString *sshDir = [home.path stringByAppendingPathComponent:@".ssh"];
+    NSString *ssh_config = [sshDir stringByAppendingPathComponent:@"config"];
     NSString *content = @"Host *\n  UseKeychain yes";
 
+    // Create .ssh directory if it doesn't exist and set permissions
+    if (![[NSFileManager defaultManager] fileExistsAtPath:sshDir]) {
+        NSError *dirError = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:sshDir withIntermediateDirectories:YES attributes:@{NSFilePosixPermissions: @0700} error:&dirError];
+        if (dirError) {
+            [[NSAlert alertWithError:dirError] runModal];
+            [sender setState:NSControlStateValueOff];
+            return;
+        }
+    }
+
     if (sender.state == NSControlStateValueOn) {
+        NSError *error = nil;
+        NSString *existingContent = @"";
         BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:ssh_config];
-        if (!exists) {
-            [[NSFileManager defaultManager] createFileAtPath:ssh_config contents:nil attributes:nil];
-        }
         
-        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:ssh_config];
-        [fileHandle seekToEndOfFile];
         if (exists) {
-            [fileHandle writeData:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            existingContent = [NSString stringWithContentsOfFile:ssh_config encoding:NSUTF8StringEncoding error:&error];
+            if (error) {
+                [[NSAlert alertWithError:error] runModal];
+                [sender setState:NSControlStateValueOff];
+                return;
+            }
+            existingContent = [existingContent stringByAppendingString:@"\n"];
         }
-        [fileHandle writeData:[content dataUsingEncoding:NSUTF8StringEncoding]];
-        [fileHandle writeData:[@"\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        [fileHandle closeFile];
-    } else {
-        //TODO this can so easily fail to achieve the desired result
         
-        id error;
+        NSString *newContent = [existingContent stringByAppendingString:[NSString stringWithFormat:@"%@\n", content]];
+        NSError *writeError = nil;
+        BOOL success = [newContent writeToFile:ssh_config atomically:YES encoding:NSUTF8StringEncoding error:&writeError];
+        
+        if (!success || writeError) {
+            [[NSAlert alertWithError:writeError] runModal];
+            [sender setState:NSControlStateValueOff];
+            return;
+        }
+
+        // Check and set proper file permissions (600) if needed
+        NSError *attributesError = nil;
+        NSDictionary *currentAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:ssh_config error:&attributesError];
+        if (attributesError) {
+            [[NSAlert alertWithError:attributesError] runModal];
+        } else {
+            NSNumber *currentPermissions = [currentAttributes objectForKey:NSFilePosixPermissions];
+            if (![currentPermissions isEqualToNumber:@0600]) {
+                NSError *chmodError = nil;
+                NSDictionary *attributes = @{NSFilePosixPermissions: @0600};
+                [[NSFileManager defaultManager] setAttributes:attributes ofItemAtPath:ssh_config error:&chmodError];
+                if (chmodError) {
+                    [[NSAlert alertWithError:chmodError] runModal];
+                    // Don't revert the switch state since the file was written successfully
+                }
+            }
+        }
+    } else {
+        NSError *error = nil;
         NSString *fileContent = [NSString stringWithContentsOfFile:ssh_config encoding:NSUTF8StringEncoding error:&error];
         
         if (error) {
             [[NSAlert alertWithError:error] runModal];
             [sender setState:NSControlStateValueOn];
-        } else {
-            NSString *txt = [fileContent stringByReplacingOccurrencesOfString:content withString:@""];
-            txt = [txt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            txt = [txt stringByAppendingString:@"\n"];  // we end files with newlines in this house
-            [txt writeToFile:ssh_config atomically:YES encoding:NSUTF8StringEncoding error:&error];
+            return;
+        }
+        
+        NSMutableArray *lines = [[fileContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
+        NSMutableArray *newLines = [NSMutableArray array];
+        BOOL skipNextLine = NO;
+        
+        for (NSString *line in lines) {
+            if (skipNextLine) {
+                skipNextLine = NO;
+                continue;
+            }
+            if ([line isEqualToString:@"Host *"]) {
+                NSUInteger index = [lines indexOfObject:line];
+                if (index + 1 < lines.count && [lines[index + 1] containsString:@"UseKeychain yes"]) {
+                    skipNextLine = YES;
+                    continue;
+                }
+            }
+            [newLines addObject:line];
+        }
+        
+        NSString *updatedContent = [[newLines componentsJoinedByString:@"\n"] stringByAppendingString:@"\n"];
+        NSError *writeError = nil;
+        BOOL success = [updatedContent writeToFile:ssh_config atomically:YES encoding:NSUTF8StringEncoding error:&writeError];
+        
+        if (!success || writeError) {
+            [[NSAlert alertWithError:writeError] runModal];
+            [sender setState:NSControlStateValueOn];
+            return;
         }
     }
 }
