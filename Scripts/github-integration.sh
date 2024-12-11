@@ -29,12 +29,34 @@ fi
 
 if ls ~/.ssh/id_* &>/dev/null; then
   gum format \
-    "uploading your ssh public keys…"
+    "Found SSH public keys in your ~/.ssh directory." \
+    "Do you want to:" \
+    "1. Upload only your primary key (id_rsa.pub or id_ed25519.pub)" \
+    "2. Upload all public keys (id_*.pub)" \
+    "3. Skip"
 
-    for x in ~/.ssh/id_*.pub; do
-        gum format "uploading $(basename "$x")…"
-        gh ssh-key add "$x" --title "$(hostname -s) (added by teaBASE)"
-    done
+  choice=$(gum choose "Upload primary key only" "Upload all keys" "Skip")
+  if [ -n "$choice" ]; then
+    case "$choice" in
+      "Upload primary key only")
+        for x in ~/.ssh/id_rsa.pub ~/.ssh/id_ed25519.pub; do
+          if [ -f "$x" ]; then
+            gum format "uploading $(basename "$x")…"
+            gh ssh-key add "$x" --title "$(hostname -s) (added by teaBASE)"
+          fi
+        done
+        ;;
+      "Upload all keys")
+        for x in ~/.ssh/id_*.pub; do
+          gum format "uploading $(basename "$x")…"
+          gh ssh-key add "$x" --title "$(hostname -s) (added by teaBASE)"
+        done
+        ;;
+      "Skip")
+        gum format "Skipping SSH key upload"
+        ;;
+    esac
+  fi
 fi
 
 
