@@ -147,21 +147,13 @@
     [self.installGitButton setHidden:git_out != nil];
 }
 
-- (IBAction)modalCancel:(NSButton *)sender {
-    [NSApp endSheet:[sender window] returnCode:NSModalResponseCancel];
-}
-
-- (IBAction)modalOK:(NSButton *)sender {
-    [NSApp endSheet:[sender window] returnCode:NSModalResponseOK];
-}
-
 - (IBAction)openGitHub:(id)sender {
     NSURL *url = [NSURL URLWithString:@"https://github.com/teaxyz/teaBASE"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)onShareClicked:(id)sender {
-    int starCount = self.ratingIndicator.intValue;
+    const int starCount = self.ratingIndicator.intValue;
 
     // Construct the stars string
     NSMutableString *stars = [NSMutableString string];

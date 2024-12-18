@@ -73,4 +73,12 @@
     return [NSFileManager.defaultManager isReadableFileAtPath:@"/usr/local/bin/pkgx"];
 }
 
+- (IBAction)modalCancel:(NSButton *)sender {
+    [NSApp endSheet:[sender window] returnCode:NSModalResponseCancel];
+}
+
+- (IBAction)modalOK:(NSButton *)sender {
+    [NSApp endSheet:[sender window] returnCode:NSModalResponseOK];
+}
+
 @end
