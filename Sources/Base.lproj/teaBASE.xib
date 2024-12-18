@@ -63,13 +63,13 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="176" y="715" width="490" height="1235"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
-            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="490" height="1992"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
+            <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="490" height="2173"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box translatesAutoresizingMaskIntoConstraints="NO" id="WN3-2b-B6g" userLabel="SSH Box">
-                        <rect key="frame" x="17" y="1561" width="456" height="290"/>
+                        <rect key="frame" x="17" y="1762" width="456" height="290"/>
                         <view key="contentView" id="ahI-og-g4k">
                             <rect key="frame" x="4" y="5" width="448" height="268"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,7 +199,7 @@
                         <font key="titleFont" metaFont="systemBold"/>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="izA-YO-JL9">
-                        <rect key="frame" x="23" y="1846" width="138" height="16"/>
+                        <rect key="frame" x="23" y="2047" width="138" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Secure Development" id="MjV-FZ-Fs7">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -207,11 +207,11 @@
                         </textFieldCell>
                     </textField>
                     <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nZr-o9-q4r">
-                        <rect key="frame" x="387" y="1848" width="60" height="12"/>
+                        <rect key="frame" x="387" y="2049" width="60" height="12"/>
                         <levelIndicatorCell key="cell" alignment="left" doubleValue="1" maxValue="5" levelIndicatorStyle="rating" id="a4h-C5-Xzf"/>
                     </levelIndicator>
                     <box titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="EId-dG-Kyz" userLabel="GPG Box">
-                        <rect key="frame" x="17" y="1407" width="456" height="146"/>
+                        <rect key="frame" x="17" y="1608" width="456" height="146"/>
                         <view key="contentView" id="uSY-y0-6jI">
                             <rect key="frame" x="4" y="5" width="448" height="138"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -321,7 +321,7 @@
                         <font key="titleFont" metaFont="systemBold"/>
                     </box>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="uKh-QD-vI5" userLabel="Share Button">
-                        <rect key="frame" x="455" y="1847" width="15.5" height="18"/>
+                        <rect key="frame" x="455" y="2048" width="15.5" height="18"/>
                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSShareTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Kik-s6-QAR">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -331,7 +331,7 @@
                         </connections>
                     </button>
                     <box translatesAutoresizingMaskIntoConstraints="NO" id="MfK-EG-iwB" userLabel="Dev Tools Box">
-                        <rect key="frame" x="17" y="1006" width="456" height="258"/>
+                        <rect key="frame" x="17" y="1207" width="456" height="258"/>
                         <view key="contentView" id="sXl-Hj-WGU">
                             <rect key="frame" x="4" y="5" width="448" height="236"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -574,7 +574,7 @@
                         <font key="titleFont" metaFont="systemBold"/>
                     </box>
                     <box translatesAutoresizingMaskIntoConstraints="NO" id="Hg0-0D-g6l" userLabel="Git Box">
-                        <rect key="frame" x="17" y="771" width="456" height="239"/>
+                        <rect key="frame" x="17" y="972" width="456" height="239"/>
                         <view key="contentView" id="hku-wI-LMw">
                             <rect key="frame" x="4" y="5" width="448" height="219"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -752,7 +752,7 @@
                         </view>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y9S-dY-VS2">
-                        <rect key="frame" x="23" y="1259" width="120" height="16"/>
+                        <rect key="frame" x="23" y="1460" width="120" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Developer Tooling" id="8Cp-wb-bZ2">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -760,7 +760,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AtI-bR-paS">
-                        <rect key="frame" x="295" y="1847" width="86" height="11"/>
+                        <rect key="frame" x="295" y="2048" width="86" height="11"/>
                         <textFieldCell key="cell" controlSize="mini" lineBreakMode="clipping" title="SECURITY RATING" id="g6W-HP-PJR">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -768,7 +768,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GaL-gS-5Oe">
-                        <rect key="frame" x="41" y="1280" width="4" height="14"/>
+                        <rect key="frame" x="41" y="1461" width="4" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" id="pGv-2j-U1N">
                             <font key="font" metaFont="smallSystem"/>
@@ -777,7 +777,7 @@
                         </textFieldCell>
                     </textField>
                     <box translatesAutoresizingMaskIntoConstraints="NO" id="hsd-gc-tHp" userLabel="Masthead Box">
-                        <rect key="frame" x="17" y="1886" width="456" height="111"/>
+                        <rect key="frame" x="17" y="2087" width="456" height="111"/>
                         <view key="contentView" id="ieJ-gy-Kki">
                             <rect key="frame" x="4" y="5" width="448" height="91"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -832,7 +832,7 @@
                         </connections>
                     </button>
                     <box title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="eKz-ky-bHg" userLabel="GitHub Integration Box">
-                        <rect key="frame" x="18" y="1299" width="454" height="100"/>
+                        <rect key="frame" x="18" y="1500" width="454" height="100"/>
                         <view key="contentView" id="bDG-PL-Gtb">
                             <rect key="frame" x="4" y="5" width="446" height="92"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -887,7 +887,7 @@
                         </view>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zQM-8Y-EuF">
-                        <rect key="frame" x="23" y="328" width="83" height="16"/>
+                        <rect key="frame" x="23" y="529" width="83" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Dotfile Sync" id="x6T-6K-E0Y">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -895,7 +895,7 @@
                         </textFieldCell>
                     </textField>
                     <box title="Dotfile Sync Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="dD0-IN-MIE">
-                        <rect key="frame" x="17" y="58" width="456" height="262"/>
+                        <rect key="frame" x="17" y="259" width="456" height="262"/>
                         <view key="contentView" id="f55-Yz-8g5">
                             <rect key="frame" x="4" y="5" width="448" height="254"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -986,7 +986,7 @@
                         </view>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I5C-X7-rda">
-                        <rect key="frame" x="110" y="330" width="114" height="11"/>
+                        <rect key="frame" x="110" y="531" width="114" height="11"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="IMPRESS YOUR FRIENDS" id="saO-3o-Dz0">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
@@ -1002,7 +1002,7 @@
                         </textFieldCell>
                     </textField>
                     <tabView translatesAutoresizingMaskIntoConstraints="NO" id="e3S-mU-HBM">
-                        <rect key="frame" x="13" y="362" width="464" height="407"/>
+                        <rect key="frame" x="13" y="563" width="464" height="407"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Terminal" identifier="" id="Ytw-NQ-Z5Y">
@@ -1461,6 +1461,71 @@
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ehx-XP-vF7">
+                        <rect key="frame" x="23" y="219" width="122" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Clean‑Install Pack" id="Z0f-Uj-az4">
+                            <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <box title="Dotfile Sync Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="BA5-be-G2g" userLabel="Clean Install Pack Box">
+                        <rect key="frame" x="17" y="57" width="456" height="154"/>
+                        <view key="contentView" id="UdN-M2-IQI">
+                            <rect key="frame" x="4" y="5" width="448" height="146"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Nup-7e-8Ud">
+                                    <rect key="frame" x="18" y="98" width="412" height="32"/>
+                                    <textFieldCell key="cell" title="There’s nothing more secure than a clean slate. Aim to clean‑install every six months. We can help with that." id="s09-GO-UFq">
+                                        <font key="font" metaFont="systemMedium" size="13"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ePP-eq-RQu">
+                                    <rect key="frame" x="18" y="48" width="412" height="42"/>
+                                    <textFieldCell key="cell" id="Nek-hU-ajl">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <string key="title">We create a shell script with an embedded, encrypted payload containing your dotfiles and security credentials. The script also reinstalls teaBASE and your brew packages &amp; casks.</string>
+                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vKH-jr-gBS">
+                                    <rect key="frame" x="302" y="13" width="133" height="32"/>
+                                    <buttonCell key="cell" type="push" title="Generate Pack…" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sC9-la-mRg">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="editWhitelist:" target="-2" id="ao2-cN-OUH"/>
+                                    </connections>
+                                </button>
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="ful-lG-Ec9">
+                                    <rect key="frame" x="18" y="20" width="106" height="14"/>
+                                    <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Clean Install Guide " id="cU8-Jd-ARr">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="ful-lG-Ec9" secondAttribute="bottom" constant="20" symbolic="YES" id="0Wy-CR-EDY"/>
+                                <constraint firstAttribute="trailing" secondItem="ePP-eq-RQu" secondAttribute="trailing" constant="20" symbolic="YES" id="4mr-GA-8RV"/>
+                                <constraint firstItem="Nup-7e-8Ud" firstAttribute="top" secondItem="UdN-M2-IQI" secondAttribute="top" constant="16" id="8Vn-6M-aEN"/>
+                                <constraint firstItem="ePP-eq-RQu" firstAttribute="leading" secondItem="UdN-M2-IQI" secondAttribute="leading" constant="20" symbolic="YES" id="JU7-ke-rh7"/>
+                                <constraint firstAttribute="bottom" secondItem="vKH-jr-gBS" secondAttribute="bottom" constant="20" symbolic="YES" id="QqG-i0-yAY"/>
+                                <constraint firstItem="vKH-jr-gBS" firstAttribute="top" secondItem="ePP-eq-RQu" secondAttribute="bottom" constant="8" symbolic="YES" id="SJy-ts-hHf"/>
+                                <constraint firstItem="ful-lG-Ec9" firstAttribute="leading" secondItem="UdN-M2-IQI" secondAttribute="leading" constant="20" symbolic="YES" id="UbC-56-sYx"/>
+                                <constraint firstItem="ePP-eq-RQu" firstAttribute="top" secondItem="Nup-7e-8Ud" secondAttribute="bottom" constant="8" symbolic="YES" id="W0l-qZ-hu1"/>
+                                <constraint firstAttribute="trailing" secondItem="vKH-jr-gBS" secondAttribute="trailing" constant="20" symbolic="YES" id="cT3-Zu-TL9"/>
+                                <constraint firstItem="Nup-7e-8Ud" firstAttribute="leading" secondItem="UdN-M2-IQI" secondAttribute="leading" constant="20" symbolic="YES" id="fMK-Ao-eP4"/>
+                                <constraint firstAttribute="trailing" secondItem="Nup-7e-8Ud" secondAttribute="trailing" constant="20" symbolic="YES" id="loe-oW-3g4"/>
+                            </constraints>
+                        </view>
+                    </box>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Y9S-dY-VS2" firstAttribute="top" secondItem="eKz-ky-bHg" secondAttribute="bottom" constant="28" id="0E8-cT-FWr"/>
@@ -1468,11 +1533,14 @@
                     <constraint firstItem="e3S-mU-HBM" firstAttribute="top" secondItem="Hg0-0D-g6l" secondAttribute="bottom" constant="12" id="3EU-kB-e7o"/>
                     <constraint firstItem="nZr-o9-q4r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="izA-YO-JL9" secondAttribute="trailing" constant="8" symbolic="YES" id="3FD-vw-khm"/>
                     <constraint firstItem="Hg0-0D-g6l" firstAttribute="top" secondItem="MfK-EG-iwB" secondAttribute="bottom" id="5mx-c8-GM7"/>
+                    <constraint firstItem="Ehx-XP-vF7" firstAttribute="leading" secondItem="zQM-8Y-EuF" secondAttribute="leading" id="6pG-BX-HvM"/>
                     <constraint firstItem="izA-YO-JL9" firstAttribute="leading" secondItem="WN3-2b-B6g" secondAttribute="leading" constant="5" id="7ev-kF-gNz"/>
                     <constraint firstItem="Hg0-0D-g6l" firstAttribute="leading" secondItem="hsd-gc-tHp" secondAttribute="leading" id="8Xo-CQ-XS9"/>
                     <constraint firstItem="Y9S-dY-VS2" firstAttribute="leading" secondItem="MfK-EG-iwB" secondAttribute="leading" constant="5" id="8tp-YX-t75"/>
                     <constraint firstItem="eKz-ky-bHg" firstAttribute="trailing" secondItem="uSY-y0-6jI" secondAttribute="trailing" id="CXs-KV-2yA"/>
                     <constraint firstItem="MfK-EG-iwB" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Y9S-dY-VS2" secondAttribute="trailing" constant="5" id="FUd-Ij-5v1"/>
+                    <constraint firstItem="BA5-be-G2g" firstAttribute="top" secondItem="Ehx-XP-vF7" secondAttribute="bottom" constant="10" id="G9B-Q1-r6X"/>
+                    <constraint firstItem="BA5-be-G2g" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="G9t-F8-fPv"/>
                     <constraint firstItem="MfK-EG-iwB" firstAttribute="top" secondItem="Y9S-dY-VS2" secondAttribute="bottom" constant="-5" id="IOz-aa-25h"/>
                     <constraint firstItem="e3S-mU-HBM" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="Iu5-mR-a1R"/>
                     <constraint firstItem="9UF-jS-jvf" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="JaM-N2-rBE"/>
@@ -1480,6 +1548,7 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I5C-X7-rda" secondAttribute="trailing" constant="20" symbolic="YES" id="KMf-pB-XrD"/>
                     <constraint firstItem="izA-YO-JL9" firstAttribute="top" secondItem="hsd-gc-tHp" secondAttribute="bottom" constant="28" id="Kx8-Sj-Erp"/>
                     <constraint firstItem="EId-dG-Kyz" firstAttribute="leading" secondItem="hsd-gc-tHp" secondAttribute="leading" id="MbW-gM-kBb"/>
+                    <constraint firstItem="9UF-jS-jvf" firstAttribute="top" secondItem="UdN-M2-IQI" secondAttribute="bottom" constant="28" id="NUi-P9-QVo"/>
                     <constraint firstAttribute="trailing" secondItem="a1z-eb-xCl" secondAttribute="trailing" constant="20" symbolic="YES" id="RYT-fp-vXb"/>
                     <constraint firstItem="uKh-QD-vI5" firstAttribute="leading" secondItem="nZr-o9-q4r" secondAttribute="trailing" constant="8" symbolic="YES" id="SPQ-D7-jKB"/>
                     <constraint firstItem="MfK-EG-iwB" firstAttribute="leading" secondItem="hsd-gc-tHp" secondAttribute="leading" id="U6o-Lz-gyV"/>
@@ -1500,7 +1569,6 @@
                     <constraint firstItem="AtI-bR-paS" firstAttribute="firstBaseline" secondItem="nZr-o9-q4r" secondAttribute="firstBaseline" id="jb6-Dw-ghO"/>
                     <constraint firstItem="hsd-gc-tHp" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="kIH-kb-8Wd"/>
                     <constraint firstItem="hsd-gc-tHp" firstAttribute="trailing" secondItem="EId-dG-Kyz" secondAttribute="trailing" id="lVZ-Ck-8bl"/>
-                    <constraint firstItem="9UF-jS-jvf" firstAttribute="top" secondItem="dD0-IN-MIE" secondAttribute="bottom" constant="28" id="mtv-5I-z2D"/>
                     <constraint firstItem="eKz-ky-bHg" firstAttribute="top" secondItem="EId-dG-Kyz" secondAttribute="bottom" constant="14" id="neV-MB-zsW"/>
                     <constraint firstItem="I5C-X7-rda" firstAttribute="firstBaseline" secondItem="zQM-8Y-EuF" secondAttribute="firstBaseline" id="oGr-J4-Stg"/>
                     <constraint firstItem="uKh-QD-vI5" firstAttribute="centerY" secondItem="nZr-o9-q4r" secondAttribute="centerY" id="oJu-gP-410"/>
@@ -1509,10 +1577,12 @@
                     <constraint firstItem="WN3-2b-B6g" firstAttribute="trailing" secondItem="uKh-QD-vI5" secondAttribute="trailing" id="vv9-zI-4jk"/>
                     <constraint firstItem="nZr-o9-q4r" firstAttribute="leading" secondItem="AtI-bR-paS" secondAttribute="trailing" constant="8" symbolic="YES" id="w3v-BG-cec"/>
                     <constraint firstItem="WN3-2b-B6g" firstAttribute="top" secondItem="izA-YO-JL9" secondAttribute="bottom" constant="-5" id="x5u-0U-oKz"/>
+                    <constraint firstItem="Ehx-XP-vF7" firstAttribute="top" secondItem="dD0-IN-MIE" secondAttribute="bottom" constant="28" id="xPB-gi-Ess"/>
                     <constraint firstItem="a1z-eb-xCl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9UF-jS-jvf" secondAttribute="trailing" constant="8" symbolic="YES" id="yVP-y6-7wY"/>
+                    <constraint firstAttribute="trailing" secondItem="BA5-be-G2g" secondAttribute="trailing" constant="20" symbolic="YES" id="zhw-od-C9D"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="90" y="144.5"/>
+            <point key="canvasLocation" x="90" y="144"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="GCa-eO-MEB"/>
         <window title="GPG Passphrase Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="NNa-hQ-jhQ">
