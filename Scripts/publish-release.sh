@@ -114,7 +114,7 @@ create-dmg \
   --window-size 435 435 \
   --window-pos 538 273 \
   --filesystem APFS \
-  --format ULFO \
+  --format UDZO \
   --background ./Resources/dmg-bg@2x.png \
   --icon teaBASE.prefPane 217.5 223.5 \
   --hide-extension teaBASE.prefPane \
