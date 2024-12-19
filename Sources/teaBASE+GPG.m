@@ -7,6 +7,15 @@
     return [output(pkgx, @[@"git", @"config", @"--global", @"commit.gpgsign"]) isEqualToString:@"true"];
 }
 
+- (NSString *)bpbConfigPath {
+    //FIXME if XDG_* vars set uses that which requires us to run a script in a login shell to extract
+    id configfile = [NSHomeDirectory() stringByAppendingPathComponent:@".config/pkgx/bpb.toml"];
+    if (![NSFileManager.defaultManager isReadableFileAtPath:configfile]) {
+        configfile = [NSHomeDirectory() stringByAppendingPathComponent:@".local/share/pkgx/bpb.toml"];
+    }
+    return configfile;
+}
+
 - (IBAction)signCommits:(NSSwitch *)sender {
     NSString *git = which(@"git");
     NSArray *config = @[@"config", @"--global"];
@@ -18,11 +27,8 @@
         
     if (sender.state == NSControlStateValueOn) {
         
-        //FIXME if XDG_* vars set uses that which requires us to run a script in a login shell to extract
-        id configfile = [NSHomeDirectory() stringByAppendingPathComponent:@".config/pkgx/bpb.toml"];
-        if (![NSFileManager.defaultManager isReadableFileAtPath:configfile]) {
-            configfile = [NSHomeDirectory() stringByAppendingPathComponent:@".local/share/pkgx/bpb.toml"];
-        }
+        
+        id configfile = [self bpbConfigPath];
         
         if ([NSFileManager.defaultManager isReadableFileAtPath:configfile]) {
             run(git, [config arrayByAddingObjectsFromArray:@[@"commit.gpgsign", @"true"]], nil);
@@ -59,7 +65,7 @@
         [self installSubexecutable:@"bpb"];
     }
     
-    if (![NSFileManager.defaultManager isReadableFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@".bpb_keys.toml"]]) {
+    if (![NSFileManager.defaultManager isReadableFileAtPath:[self bpbConfigPath]]) {
         id initstr = [NSString stringWithFormat:@"%@ <%@>", username, email];
         run(@"/usr/local/bin/bpb", @[@"init", initstr], nil);
     }

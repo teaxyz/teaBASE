@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63053F3C2D14AA8500E39578 /* make-clean-install-pack.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 63053F3A2D14AA7500E39578 /* make-clean-install-pack.sh */; };
 		634F60232CFE1F40006DF7B7 /* dotfile-sync.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 634F60222CFE1F40006DF7B7 /* dotfile-sync.sh */; };
 		6367D7312CDD28E300250E84 /* github-integration.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 6367D72E2CDD28CA00250E84 /* github-integration.sh */; };
 		63AA5EC82CEF5C6300BC8696 /* usr-local-install.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 63AA5EC62CEF59DD00BC8696 /* usr-local-install.sh */; };
@@ -22,6 +23,7 @@
 			dstPath = ../Scripts;
 			dstSubfolderSpec = 6;
 			files = (
+				63053F3C2D14AA8500E39578 /* make-clean-install-pack.sh in Copy Scripts to Bundle */,
 				63FF33402D07CDFF0021E1E2 /* self-update.sh in Copy Scripts to Bundle */,
 				634F60232CFE1F40006DF7B7 /* dotfile-sync.sh in Copy Scripts to Bundle */,
 				63FCE92E2D061CE1000DA22F /* install-docker.sh in Copy Scripts to Bundle */,
@@ -35,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63053F3A2D14AA7500E39578 /* make-clean-install-pack.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "make-clean-install-pack.sh"; sourceTree = "<group>"; };
 		632219852CB4173D00606A25 /* teaBASE.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = teaBASE.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		632895F92CD27FA80022D63D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		632E38D82D01C60C00B7A044 /* self-update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "self-update.sh"; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 		6367D72F2CDD28CA00250E84 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				63053F3A2D14AA7500E39578 /* make-clean-install-pack.sh */,
 				63FCE92C2D061C15000DA22F /* install-docker.sh */,
 				632E38D82D01C60C00B7A044 /* self-update.sh */,
 				63AE667F2CF6173D00EB278B /* docker-version.sh */,
