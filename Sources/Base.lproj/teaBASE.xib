@@ -65,7 +65,7 @@
             <rect key="contentRect" x="176" y="715" width="490" height="1235"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="490" height="2173"/>
+                <rect key="frame" x="0.0" y="0.0" width="490" height="1235"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box translatesAutoresizingMaskIntoConstraints="NO" id="WN3-2b-B6g" userLabel="SSH Box">
@@ -768,7 +768,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GaL-gS-5Oe">
-                        <rect key="frame" x="41" y="1461" width="4" height="14"/>
+                        <rect key="frame" x="41" y="523" width="4" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" id="pGv-2j-U1N">
                             <font key="font" metaFont="smallSystem"/>
@@ -1499,7 +1499,7 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="editWhitelist:" target="-2" id="ao2-cN-OUH"/>
+                                        <action selector="generateCleanInstallPack:" target="-2" id="WPD-eG-zYx"/>
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="ful-lG-Ec9">
@@ -1509,6 +1509,9 @@
                                         <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
+                                    <connections>
+                                        <action selector="openCleanInstallGuide:" target="-2" id="lH6-5c-Q0B"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <constraints>
@@ -1589,7 +1592,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="305" width="413" height="273"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" id="OwU-br-c7g">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="212"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1691,7 +1694,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="305" width="413" height="273"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" id="ga6-er-FDC">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="254"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1794,7 +1797,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="305" width="414" height="306"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" id="Ye9-Xh-Sck">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="306"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1890,7 +1893,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="283" y="305" width="414" height="264"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" id="lHu-Ep-T2n">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="238"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -1986,7 +1989,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="140" y="178" width="413" height="282"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" id="1bJ-M5-Tf3">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="282"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -2148,7 +2151,7 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="140" y="178" width="413" height="425"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <view key="contentView" id="OTG-s6-8dM">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="425"/>
                 <autoresizingMask key="autoresizingMask"/>
