@@ -5,7 +5,7 @@
 - (IBAction)installGit:(NSButton *)sender {
     if (sender.selectedTag != 2) {
         run(@"/usr/bin/xcode-select", @[@"--install"], nil);
-        // for weird reasons the install window does not come to the front on Somona
+        // for weird reasons the install window does not come to the front on Sonoma
         run(@"/usr/bin/open", @[@"/System/Library/CoreServices/Install Command Line Developer Tools.app"], nil);
     } else {
         run(brewPath(), @[@"install", @"git"], nil);
