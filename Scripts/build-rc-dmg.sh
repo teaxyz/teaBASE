@@ -1,5 +1,7 @@
 #!/usr/bin/env -S pkgx +create-dmg bash -eo pipefail
 
+cd "$(dirname "$0")/.."
+
 if ! test "$1"; then
   echo "usage $0 <VERSION>" >&2
   exit 1
@@ -18,7 +20,7 @@ xcodebuild \
   build
 
 codesign \
-  --entitlements ~/src/teaBASE/Sundries/teaBASE.entitlements \
+  --entitlements ./Sundries/teaBASE.entitlements \
   --deep --force \
   --options runtime \
   --sign "Developer ID Application: Tea Inc. (7WV56FL599)" \
