@@ -111,25 +111,37 @@ resolve() {
 }
 
 push() {
-  set +e  # prevent errors for no files
-  git add "$HOME/.aws/config"
-  git add "$HOME/.bash_login"
-  git add "$HOME/.bashrc"
-  git add "$HOME/.bash_profile"
-  git add "$HOME/.config/btop/btop.conf"
-  git add "$HOME/.config/fish/config.fish"
-  git add "$HOME/.config/**/config.xml"
-  git add "$HOME/.config/**/config.yml"
-  git add "$HOME/.config/**/config.json"
-  git add "$HOME/.config/**/settings.json"
-  git add "$HOME/.gitconfig"
-  git add "$HOME/.profile"
-  git add "$HOME/.ssh/config"
-  git add "$HOME/.vimrc"
-  git add "$HOME/.zprofile"
-  git add "$HOME/.zshenv"
-  git add "$HOME/.zshrc"
+  cd "$HOME"
   set -e
+
+  cnf="${XDG_CONFIG_HOME:-.config}"
+
+  git add .aws/config
+  git add .bash_login
+  git add .bashrc
+  git add .bash_profile
+  git add .config/btop/btop.conf
+  git add .config/fish/config.fish
+  git add ".*/config.xml" "$cnf/**/config.xml"
+  git add ".*/config.yml" "$cnf/**/config.yml" ".*/config.yaml" "$cnf/**/config.yaml"
+  git add ".*/config.json" "$cnf/**/config.json"
+  git add ".*/settings.json" "$cnf/**/settings.json"
+  git add .gitconfig "$cnf"/git/config
+  git add .profile
+  git add .vimrc
+  git add .zprofile
+  git add .zshenv
+  git add .zshrc
+
+  ## we don’t do .*/**/config as it tends to pick up files in cached cloned repos (eg. cargo)
+  for x in .*/config "$cnf/**/config"; do
+    if test -f "$x"; then
+      git add "$x"
+    fi
+  done
+
+  set +e
+  cd "$OLDPWD"
 
   if ! git diff-index --quiet HEAD --; then
     git commit --message "r$(git rev-list --count HEAD)"
