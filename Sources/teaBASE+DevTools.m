@@ -109,8 +109,8 @@ static NSString* fetchLatestBrewVersion(void) {
                 [sender setEnabled:YES];
             });
         } else if (installer(location)) {
-                // ^^ runs the installer on the NSURLSession queue as the download
-                // is deleted when it exits. afaict this is fine.
+                // ^^ Runs the installer on the NSURLSession queue. The downloaded
+                // file is deleted when the installation completes, which appears to be fine.
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (self.setupBrewShellEnvCheckbox.state == NSControlStateValueOn) {
