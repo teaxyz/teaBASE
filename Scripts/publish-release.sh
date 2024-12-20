@@ -101,7 +101,7 @@ lipo -create \
   build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/pkgx
 
 codesign \
-  --entitlements ~/src/teaBASE/Sundries/teaBASE.entitlements \
+  --entitlements ./Sundries/teaBASE.entitlements \
   --deep --force \
   --options runtime \
   --sign "Developer ID Application: Tea Inc. (7WV56FL599)" \
