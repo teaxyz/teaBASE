@@ -1,11 +1,10 @@
 # teaBASE
 
-A macOS preference pane that levels up the security and power of your
-development environment.
+The developer cockpit.
 
 [![Download teaBASE.dmg](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download DMG")](https://teaxyz.github.io/teaBASE/download.html)
 
-> Requires macOS ≥13.5
+> teaBASE is a macOS ≥13.5 Preference Pane.
 
 > [!WARNING]
 > teaBASE is in *beta*, almost certainly there are edge cases we are not yet
