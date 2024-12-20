@@ -12,3 +12,6 @@
 /Photos
 /Pictures
 /Sites
+
+# speed up glob adds for eg config.yml
+/.pkgx
