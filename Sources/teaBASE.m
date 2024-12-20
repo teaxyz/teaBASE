@@ -9,6 +9,9 @@
 }
 
 - (void)willSelect {
+    // Close any open windows from previous pane
+    [self closeAllWindows];
+    
     // Initially disable all interactive elements
     [self.gpgSignSwitch setEnabled:NO];
     [self.homebrewSwitch setEnabled:NO];
@@ -91,6 +94,16 @@
             self.selfVersionLabel.stringValue = [NSString stringWithFormat:@"v%@", v];
         }
     });
+}
+
+- (void)closeAllWindows {
+    // Close all modal windows when switching panes
+    [self.sshPassphraseWindow close];
+    [self.sshRemovePassphraseWindow close];
+    [self.gpgPassphraseWindow close];
+    [self.brewInstallWindow close];
+    [self.gitGudWindow close];
+    [self.gitIdentityWindow close];
 }
 
 - (void)didSelect {
