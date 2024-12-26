@@ -103,9 +103,17 @@ BOOL file_contains(NSString *path, NSString *token) {
         return NO; // TODO error condition
     }
     
-    // FIXME whitespace can vary
-    NSRange range = [fileContents rangeOfString:token];
+    // Normalize whitespace in both strings before comparison
+    NSString *normalizedContents = [fileContents stringByReplacingOccurrencesOfString:@"\\s+"
+                                                                           withString:@" "
+                                                                              options:NSRegularExpressionSearch
+                                                                                range:NSMakeRange(0, fileContents.length)];
+    NSString *normalizedToken = [token stringByReplacingOccurrencesOfString:@"\\s+"
+                                                                 withString:@" "
+                                                                    options:NSRegularExpressionSearch
+                                                                      range:NSMakeRange(0, token.length)];
     
+    NSRange range = [normalizedContents rangeOfString:normalizedToken];
     return (range.location != NSNotFound);
 }
 
