@@ -28,7 +28,7 @@ else
   gh auth login -h github.com -p https -s write:gpg_key -s admin:public_key -w
 fi
 
-if test $(find ~/.ssh -name id_\*.pub | wc -l) -gt 1; then
+if test $(find ~/.ssh -name id_*.pub | wc -l) -gt 1; then
   gum format \
     "# multiple ssh public keys found" \
     "choose which to upload" \
