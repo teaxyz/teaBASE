@@ -60,7 +60,7 @@ cold_start_choice() {
         "we can either replace the files here or perform an interactive merge." \
         "" \
         "* interactive merge allows you to choose how to combine both sets of files before committing, merging and pushing back to GitHub." \
-        "* *replace* overwrites local files from your remote GitHub repo. No other files will be effected." \
+        "* *replace* overwrites local files from your remote GitHub repo. No other files will be affected." \
         "" \
         "> ⌃C to abort"
 
