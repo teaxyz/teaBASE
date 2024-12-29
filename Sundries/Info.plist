@@ -5,7 +5,7 @@
 	<key>CFBundleIconFile</key>
 	<string>teaBASE.icns</string>
 	<key>NSPrefPaneIconFile</key>
-	<string>SystemSettingsIcon.svg</string>
+	<string>teaBASE.icns</string>
 	<key>NSPrefPaneIconLabel</key>
 	<string>teaBASE β</string>
 </dict>

@@ -76,7 +76,7 @@ xcodebuild \
   -scheme teaBASE \
   -configuration Release \
   -xcconfig "$tmp_xcconfig" \
-  -derivedDataPath ./build \
+  -derivedDataPath ./Build \
   -destination "generic/platform=macOS" \
   ARCHS="x86_64 arm64" \
   EXCLUDED_ARCHS="" \

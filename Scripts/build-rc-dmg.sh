@@ -16,7 +16,7 @@ xcodebuild \
   -scheme teaBASE \
   -configuration Release \
   -xcconfig "$tmp_xcconfig" \
-  -derivedDataPath ./build \
+  -derivedDataPath ./Build \
   build
 
 codesign \

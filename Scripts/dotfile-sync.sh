@@ -44,7 +44,7 @@ clone() {
   USER="$(gh api user --jq '.login')"
   gh repo clone "git@github.com:$USER/dotfiles.git" "$GIT_DIR" -- --bare
   configure
-  cp -f "$BUNDLE/Resources/dotfile-sync-exclude" "$GIT_DIR/info/exclude"
+  cp -f "$BUNDLE/Resources/dotfile-sync-exclude.txt" "$GIT_DIR/info/exclude"
   rm "$GIT_DIR"/hooks/*.sample  # gardening
 }
 
