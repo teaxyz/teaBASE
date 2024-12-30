@@ -15,9 +15,9 @@
             [self installSubexecutable:@"pkgx"];
             [self updateVersions];
 
-            // Update pkgx switch state
+            // Update switch state based on actual installation status
             [self.pkgxSwitch setEnabled:YES];
-            [self.pkgxSwitch setState:NSControlStateValueOn];
+            [self.pkgxSwitch setState:[self pkgxInstalled] ? NSControlStateValueOn : NSControlStateValueOff];
 
             // After installation, proceed with generating the pack
             [self generateCleanInstallPack:sender];
