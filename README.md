@@ -68,6 +68,20 @@ it’s all just `git` under the hood.
 
 <img src='https://teaxyz.github.io/teaBASE/img/dev-tooling.png' width=476>
 
+<img src='https://teaxyz.github.io/teaBASE/img/terminals.png' width=476>
+
+We make it easy to install popular terminals and editors and set them as
+defaults. We also optionally can configure macOS to open all common programmer
+file formats with your chosen editor.
+
+## Clean Install Pack
+
+Create an encrypted `.dmg` with your dotfiles, working source trees and
+your GPG private key ready for re-import. The pack can also reinstall your
+apps and tools.
+
+<img src='https://teaxyz.github.io/teaBASE/img/clean-install-pack.png' width=476>
+
 &nbsp;
 
 
