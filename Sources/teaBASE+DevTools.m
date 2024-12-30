@@ -198,6 +198,14 @@ static NSString* fetchLatestBrewVersion(void) {
 }
 
 - (IBAction)installCaskItem:(NSButton *)sender {
+    if (![NSFileManager.defaultManager isExecutableFileAtPath:brewPath()]) {
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = @"Prerequisite Unsatisfied";
+        alert.informativeText = @"Homebrew must be installed first.";
+        [alert runModal];
+        return;
+    }
+    
     id cmd = [NSString stringWithFormat:@"brew install --cask %@", sender.identifier];
     run_in_terminal(cmd);
     [sender setTitle:@"Installing…"];

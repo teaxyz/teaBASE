@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		63053F3C2D14AA8500E39578 /* make-clean-install-pack.command in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 63053F3A2D14AA7500E39578 /* make-clean-install-pack.command */; };
 		634F60232CFE1F40006DF7B7 /* dotfile-sync.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 634F60222CFE1F40006DF7B7 /* dotfile-sync.sh */; };
-		6367D7312CDD28E300250E84 /* github-integration.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 6367D72E2CDD28CA00250E84 /* github-integration.sh */; };
+		6367D7312CDD28E300250E84 /* github-integration.command in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 6367D72E2CDD28CA00250E84 /* github-integration.command */; };
 		63AA5EC82CEF5C6300BC8696 /* usr-local-install.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 63AA5EC62CEF59DD00BC8696 /* usr-local-install.sh */; };
 		63AE66812CF618DC00EB278B /* docker-version.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 63AE667F2CF6173D00EB278B /* docker-version.sh */; };
 		63FCE92E2D061CE1000DA22F /* install-docker.sh in Copy Scripts to Bundle */ = {isa = PBXBuildFile; fileRef = 63FCE92C2D061C15000DA22F /* install-docker.sh */; };
@@ -29,7 +29,7 @@
 				63FCE92E2D061CE1000DA22F /* install-docker.sh in Copy Scripts to Bundle */,
 				63AE66812CF618DC00EB278B /* docker-version.sh in Copy Scripts to Bundle */,
 				63AA5EC82CEF5C6300BC8696 /* usr-local-install.sh in Copy Scripts to Bundle */,
-				6367D7312CDD28E300250E84 /* github-integration.sh in Copy Scripts to Bundle */,
+				6367D7312CDD28E300250E84 /* github-integration.command in Copy Scripts to Bundle */,
 			);
 			name = "Copy Scripts to Bundle";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,7 +42,7 @@
 		632895F92CD27FA80022D63D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		632E38D82D01C60C00B7A044 /* self-update.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "self-update.sh"; sourceTree = "<group>"; };
 		634F60222CFE1F40006DF7B7 /* dotfile-sync.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "dotfile-sync.sh"; sourceTree = "<group>"; };
-		6367D72E2CDD28CA00250E84 /* github-integration.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "github-integration.sh"; sourceTree = "<group>"; };
+		6367D72E2CDD28CA00250E84 /* github-integration.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "github-integration.command"; sourceTree = "<group>"; };
 		63AA5EC62CEF59DD00BC8696 /* usr-local-install.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "usr-local-install.sh"; sourceTree = "<group>"; };
 		63AE667F2CF6173D00EB278B /* docker-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "docker-version.sh"; sourceTree = "<group>"; };
 		63FCE92C2D061C15000DA22F /* install-docker.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-docker.sh"; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				632E38D82D01C60C00B7A044 /* self-update.sh */,
 				63AE667F2CF6173D00EB278B /* docker-version.sh */,
 				63AA5EC62CEF59DD00BC8696 /* usr-local-install.sh */,
-				6367D72E2CDD28CA00250E84 /* github-integration.sh */,
+				6367D72E2CDD28CA00250E84 /* github-integration.command */,
 				634F60222CFE1F40006DF7B7 /* dotfile-sync.sh */,
 			);
 			path = Scripts;

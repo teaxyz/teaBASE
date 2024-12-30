@@ -190,7 +190,7 @@
     //TODO ^^ report as bug?
     //TODO pipe output and handle it so exit code is good
 
-    NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/github-integration.sh"];
+    NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/github-integration.command"];
     
     run_in_terminal(script_path);
     

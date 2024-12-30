@@ -165,10 +165,15 @@ BOOL run_in_terminal(NSString *input) {
         NSString *tempFileName = [[NSUUID UUID].UUIDString stringByAppendingPathExtension:@"command"];
         commandFilePath = [tempDir stringByAppendingPathComponent:tempFileName];
         
-        // Add a shebang and the input string as content
-        NSString *commandContent = [NSString stringWithFormat:@"#!/bin/sh\n%@\n%@",
+        id brew = [brewPath() stringByDeletingLastPathComponent];
+        id PATH = [NSString stringWithFormat:@"%@:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", brew];
+        
+        //NOTE we `cd /` because otherwise we seem to be executed with no current directory
+        //     which breaks a bunch of rust tools that panic when no CWD is set
+        NSString *commandContent = [NSString stringWithFormat:@"#!/bin/sh\nexport PATH=\"%@\"\ncd /\n%@\n%@\n",
+            PATH,
             input,
-            @"rm \"$0\"; rmdir \"$(dirname \"$0\")\""  // delete self afterwards
+            @"# rm \"$0\"; rmdir \"$(dirname \"$0\")\""  // delete self afterwards //NOTE disabled due to weird Apple permissions on the temp dir
         ];
         
         // Write the content to the temporary file
@@ -217,35 +222,6 @@ BOOL run_in_terminal(NSString *input) {
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     NSRect titleRect = [self titleRectForBounds:cellFrame];
     [[self attributedStringValue] drawInRect:titleRect];
-}
-
-@end
-
-
-@interface DraggableIconView : NSImageView <NSDraggingSource>
-@end
-
-@implementation DraggableIconView
-
-- (void)mouseDown:(NSEvent *)event {
-    id filePath = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Resources/cd to.app"];
-    
-    // Create a pasteboard item with the file URL
-    NSPasteboardItem *pasteboardItem = [NSPasteboardItem new];
-    [pasteboardItem setString:filePath forType:NSPasteboardTypeFileURL];
-    
-    // Create the dragging item
-    NSDraggingItem *draggingItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardItem];
-    [draggingItem setDraggingFrame:self.bounds contents:self.image];
-    
-    // Begin the dragging session
-    [self beginDraggingSessionWithItems:@[draggingItem] event:event source:self];
-}
-
-#pragma mark - NSDraggingSource
-
-- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
-    return NSDragOperationCopy; // Allow copying the item
 }
 
 @end
