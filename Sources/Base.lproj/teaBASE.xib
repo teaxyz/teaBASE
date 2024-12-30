@@ -1212,7 +1212,7 @@
                                         </popUpButton>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EBJ-uz-Ock">
                                             <rect key="frame" x="18" y="58" width="306" height="28"/>
-                                            <textFieldCell key="cell" controlSize="small" title="Unfortunately, you will need to ⌘ drag `cd to` to the FInder toolbar yourself. Totes worth it tho." id="SSe-4S-gZ9">
+                                            <textFieldCell key="cell" controlSize="small" title="Unfortunately, you will need to ⌘ drag `cd to` to the Finder toolbar yourself. Totes worth it tho." id="SSe-4S-gZ9">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
