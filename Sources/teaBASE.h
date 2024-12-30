@@ -66,7 +66,23 @@
 @property (weak) IBOutlet NSTextField *gitIdentityEmailLabel;
 @property (weak) IBOutlet NSWindow *gitIdentityWindow;
 
+@property (weak) IBOutlet NSButton *warpInstallButton;
+@property (weak) IBOutlet NSButton *hyperInstallButton;
+@property (weak) IBOutlet NSButton *iterm2InstallButton;
+@property (weak) IBOutlet NSPopUpButton *defaultTerminalChooser;
+
+@property (weak) IBOutlet NSButton *vscodeInstallButton;
+@property (weak) IBOutlet NSButton *cursorInstallButton;
+@property (weak) IBOutlet NSButton *cotEditorInstallButton;
+@property (weak) IBOutlet NSButton *zedInstallButton;
+@property (weak) IBOutlet NSTextField *defaultEditorLabel;
+
+@property (weak) IBOutlet NSWindow *defaultEditorWindow;
+@property (weak) IBOutlet NSPopUpButton *defaultEditorChooser;
+@property (weak) IBOutlet NSButton *addAdditionalProgrammerTextFormatsCheckbox;
+
 - (void)calculateSecurityRating;
+- (void)updateVersions;
 
 @end
 
@@ -99,10 +115,15 @@
 - (void)checkForUpdates;
 @end
 
+@interface teaBASE (DevTools)
+- (void)updateInstallationStatuses;
+@end
+
 
 BOOL run(NSString *cmd, NSArray *args, NSPipe *pipe);
 BOOL file_contains(NSString *path, NSString *token);
 BOOL sudo_run_cmd(char *cmd, char *arguments[], NSString *errorTitle);
+BOOL run_in_terminal(NSString *cmd);
 NSString *output(NSString *cmd, NSArray *args);
 NSString *which(NSString *cmd);
 NSString *brewPath(void);

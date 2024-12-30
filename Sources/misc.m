@@ -103,9 +103,11 @@ BOOL file_contains(NSString *path, NSString *token) {
         return NO; // TODO error condition
     }
     
-    // FIXME whitespace can vary
-    NSRange range = [fileContents rangeOfString:token];
+    // Normalize whitespace in both strings before comparison
+    NSString *normalizedContents = [fileContents stringByReplacingOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, fileContents.length)];
+    NSString *normalizedToken = [token stringByReplacingOccurrencesOfString:@"\\s+" withString:@" " options:NSRegularExpressionSearch range:NSMakeRange(0, token.length)];
     
+    NSRange range = [normalizedContents rangeOfString:normalizedToken];
     return (range.location != NSNotFound);
 }
 
@@ -150,6 +152,56 @@ BOOL sudo_run_cmd(char *cmd, char *arguments[], NSString *errorTitle) {
     #undef DIE
 }
 
+BOOL run_in_terminal(NSString *input) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *commandFilePath = nil;
+    NSError *error = nil;
+    
+    if ([input hasSuffix:@".command"] && [fileManager fileExistsAtPath:input]) {
+        // If the input is a valid `.command` file, use it directly
+        commandFilePath = input;
+    } else {
+        NSString *tempDir = [fileManager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:[NSURL fileURLWithPath:NSHomeDirectory()] create:YES error:&error].path;
+        NSString *tempFileName = [[NSUUID UUID].UUIDString stringByAppendingPathExtension:@"command"];
+        commandFilePath = [tempDir stringByAppendingPathComponent:tempFileName];
+        
+        // Add a shebang and the input string as content
+        NSString *commandContent = [NSString stringWithFormat:@"#!/bin/sh\n%@\n%@",
+            input,
+            @"rm \"$0\"; rmdir \"$(dirname \"$0\")\""  // delete self afterwards
+        ];
+        
+        // Write the content to the temporary file
+        [commandContent writeToFile:commandFilePath
+                         atomically:YES
+                           encoding:NSUTF8StringEncoding
+                              error:&error];
+        
+        if (error) {
+            NSLog(@"teaBASE: failed to write temporary file: %@", error);
+            return NO;
+        }
+        
+        // Make the temporary file executable
+        if (![fileManager setAttributes:@{NSFilePosixPermissions: @(0755)}
+                           ofItemAtPath:commandFilePath
+                                  error:&error]) {
+            NSLog(@"teaBASE: failed to set file executable: %@", error);
+            return NO;
+        }
+    }
+    
+    NSURL *fileURL = [NSURL fileURLWithPath:commandFilePath];
+    BOOL success = [[NSWorkspace sharedWorkspace] openURL:fileURL];
+
+    if (!success) {
+        NSLog(@"teaBASE: execution failed: %@", input);
+    }
+    
+    return success;
+}
+
+
 @interface VerticallyAlignedTextFieldCell: NSTextFieldCell
 @end
 
@@ -165,6 +217,35 @@ BOOL sudo_run_cmd(char *cmd, char *arguments[], NSString *errorTitle) {
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     NSRect titleRect = [self titleRectForBounds:cellFrame];
     [[self attributedStringValue] drawInRect:titleRect];
+}
+
+@end
+
+
+@interface DraggableIconView : NSImageView <NSDraggingSource>
+@end
+
+@implementation DraggableIconView
+
+- (void)mouseDown:(NSEvent *)event {
+    id filePath = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Resources/cd to.app"];
+    
+    // Create a pasteboard item with the file URL
+    NSPasteboardItem *pasteboardItem = [NSPasteboardItem new];
+    [pasteboardItem setString:filePath forType:NSPasteboardTypeFileURL];
+    
+    // Create the dragging item
+    NSDraggingItem *draggingItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardItem];
+    [draggingItem setDraggingFrame:self.bounds contents:self.image];
+    
+    // Begin the dragging session
+    [self beginDraggingSessionWithItems:@[draggingItem] event:event source:self];
+}
+
+#pragma mark - NSDraggingSource
+
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
+    return NSDragOperationCopy; // Allow copying the item
 }
 
 @end

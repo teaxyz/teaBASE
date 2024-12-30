@@ -76,7 +76,7 @@ xcodebuild \
   -scheme teaBASE \
   -configuration Release \
   -xcconfig "$tmp_xcconfig" \
-  -derivedDataPath ./build \
+  -derivedDataPath ./Build \
   -destination "generic/platform=macOS" \
   ARCHS="x86_64 arm64" \
   EXCLUDED_ARCHS="" \
@@ -101,7 +101,7 @@ lipo -create \
   build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/pkgx
 
 codesign \
-  --entitlements ~/src/teaBASE/Sundries/teaBASE.entitlements \
+  --entitlements ./Sundries/teaBASE.entitlements \
   --deep --force \
   --options runtime \
   --sign "Developer ID Application: Tea Inc. (7WV56FL599)" \
@@ -114,7 +114,7 @@ create-dmg \
   --window-size 435 435 \
   --window-pos 538 273 \
   --filesystem APFS \
-  --format ULFO \
+  --format UDZO \
   --background ./Resources/dmg-bg@2x.png \
   --icon teaBASE.prefPane 217.5 223.5 \
   --hide-extension teaBASE.prefPane \

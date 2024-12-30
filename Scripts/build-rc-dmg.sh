@@ -1,5 +1,7 @@
 #!/usr/bin/env -S pkgx +create-dmg bash -eo pipefail
 
+cd "$(dirname "$0")/.."
+
 if ! test "$1"; then
   echo "usage $0 <VERSION>" >&2
   exit 1
@@ -14,11 +16,11 @@ xcodebuild \
   -scheme teaBASE \
   -configuration Release \
   -xcconfig "$tmp_xcconfig" \
-  -derivedDataPath ./build \
+  -derivedDataPath ./Build \
   build
 
 codesign \
-  --entitlements ~/src/teaBASE/Sundries/teaBASE.entitlements \
+  --entitlements ./Sundries/teaBASE.entitlements \
   --deep --force \
   --options runtime \
   --sign "Developer ID Application: Tea Inc. (7WV56FL599)" \
@@ -26,12 +28,14 @@ codesign \
 
 rm -f teaBASE-$v.dmg
 
+#NOTE UDZO is half the size of the supposedly “better” ULMO
+
 create-dmg \
   --volname "teaBASE v$1" \
   --window-size 435 435 \
   --window-pos 538 273 \
   --filesystem APFS \
-  --format ULFO \
+  --format UDZO \
   --background ./Resources/dmg-bg@2x.png \
   --icon teaBASE.prefPane 217.5 223.5 \
   --hide-extension teaBASE.prefPane \

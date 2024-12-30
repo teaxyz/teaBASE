@@ -20,7 +20,7 @@
     
     if (sender.state == NSControlStateValueOn) {
         NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-        id src = [bundle pathForResource:@"xyz.tea.BASE.dotfile-sync" ofType:@"plist"];
+        id src = [bundle pathForResource:@"dotfile-sync-launchd" ofType:@"plist"];
         NSString *contents = [NSString stringWithContentsOfFile:src encoding:NSUTF8StringEncoding error:nil];
         id prefpane_path = [bundle bundlePath];
         contents = [contents stringByReplacingOccurrencesOfString:@"$PREFPANE" withString:prefpane_path];
@@ -35,10 +35,7 @@
         
         if (!self.dotfileDirThere) {
             NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/dotfile-sync.sh"];
-
-            run(@"/usr/bin/open", @[
-                @"-a", @"Terminal.app", script_path
-            ], nil);
+            run_in_terminal(script_path);
         }
         
     } else {

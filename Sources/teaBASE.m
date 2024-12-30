@@ -91,6 +91,8 @@
             self.selfVersionLabel.stringValue = [NSString stringWithFormat:@"v%@", v];
         }
     });
+    
+    [self updateInstallationStatuses];
 }
 
 - (void)didSelect {
@@ -147,21 +149,13 @@
     [self.installGitButton setHidden:git_out != nil];
 }
 
-- (IBAction)modalCancel:(NSButton *)sender {
-    [NSApp endSheet:[sender window] returnCode:NSModalResponseCancel];
-}
-
-- (IBAction)modalOK:(NSButton *)sender {
-    [NSApp endSheet:[sender window] returnCode:NSModalResponseOK];
-}
-
 - (IBAction)openGitHub:(id)sender {
     NSURL *url = [NSURL URLWithString:@"https://github.com/teaxyz/teaBASE"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)onShareClicked:(id)sender {
-    int starCount = self.ratingIndicator.intValue;
+    const int starCount = self.ratingIndicator.intValue;
 
     // Construct the stars string
     NSMutableString *stars = [NSMutableString string];
@@ -197,10 +191,8 @@
     //TODO pipe output and handle it so exit code is good
 
     NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/github-integration.sh"];
-
-    run(@"/usr/bin/open", @[
-        @"-a", @"Terminal.app", script_path
-    ], nil);
+    
+    run_in_terminal(script_path);
     
     self.greenCheckGitHubIntegration.hidden = NO;
     [self.defaultsController.defaults setValue:@YES forKey:@"xyz.tea.BASE.integrated-GitHub"];

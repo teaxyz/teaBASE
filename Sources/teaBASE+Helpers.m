@@ -31,8 +31,6 @@
     
     [task waitUntilExit];
     
-    NSLog(@"teaBASE: xcodeCLTInstalled [output]: %d", task.terminationStatus);
-    
     return task.terminationStatus == 0;
 }
 
@@ -59,8 +57,6 @@
     
     [task waitUntilExit];
     
-    NSLog(@"teaBASE: xcodeInstalled [output]: %@", output);
-    
     return output.length > 0;
 }
 
@@ -71,6 +67,14 @@
 - (BOOL)pkgxInstalled {
     //TODO need to check more locations
     return [NSFileManager.defaultManager isReadableFileAtPath:@"/usr/local/bin/pkgx"];
+}
+
+- (IBAction)modalCancel:(NSButton *)sender {
+    [NSApp endSheet:[sender window] returnCode:NSModalResponseCancel];
+}
+
+- (IBAction)modalOK:(NSButton *)sender {
+    [NSApp endSheet:[sender window] returnCode:NSModalResponseOK];
 }
 
 @end
