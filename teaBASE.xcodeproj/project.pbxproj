@@ -256,7 +256,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -exo pipefail\n\ncd \"${DERIVED_FILE_DIR}\"\n\ncp pkgx \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\ncp bpb/target/release/bpb \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\n";
+			shellScript = "set -exo pipefail\n\ncd \"${DERIVED_FILE_DIR}\"\n\ncp pkgx \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\ncp bpb/target/$CONFIGURATION/bpb \"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		63A57FAE2D1F672200AB393B /* Bundle `cd to.app` */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -275,7 +276,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$DERIVED_FILE_DIR\"\n\nif ! test -d cdto; then\n    git clone https://github.com/pkgxdev/cdto\n    cd cdto\nelse\n    cd cdto\n    git fetch -pft\n    git reset --hard origin/master\nfi\n\nxcodebuild \\\n    -scheme \"cd to\" \\\n    -configuration Release \\\n    -derivedDataPath ./build \\\n    -destination \"generic/platform=macOS\" \\\n    ARCHS=\"x86_64 arm64\" \\\n    EXCLUDED_ARCHS=\"\" \\\n    build\n\nditto \\\n    build/Build/Products/Release/\"cd to.app\" \\\n    $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/\"cd to.app\"\n";
+			shellScript = "cd \"$DERIVED_FILE_DIR\"\n\nif ! test -d cdto; then\n    git clone https://github.com/pkgxdev/cdto\n    cd cdto\nelse\n    cd cdto\n    git fetch -pft\n    git reset --hard origin/master\nfi\n\nif test $CONFIGURATION = Release; then\n    xcodebuild \\\n        -scheme \"cd to\" \\\n        -configuration $CONFIGURATION \\\n        -derivedDataPath ./build \\\n        -destination \"generic/platform=macOS\" \\\n        ARCHS=\"x86_64 arm64\" \\\n        EXCLUDED_ARCHS=\"\" \\\n        build\nelse\n    xcodebuild \\\n        -scheme \"cd to\" \\\n        -configuration $CONFIGURATION \\\n        -derivedDataPath ./build\nfi\n\nditto \\\n    build/Build/Products/$CONFIGURATION/\"cd to.app\" \\\n    $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/\"cd to.app\"\n";
+			showEnvVarsInLog = 0;
 		};
 		63AE66822CF754D200EB278B /* Build bpb */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -295,7 +297,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$DERIVED_FILE_DIR\"\n\nif ! test -d bpb/.git; then\n    rm -rf bpb  # Xcode tries to be helpful by creating the intermediary directories for us but this breaks git clone\n    git clone https://github.com/pkgxdev/bpb\n    cd bpb\nelse\n    cd bpb\n    git fetch -pft\n    git reset --hard origin/main\nfi\n\n\"${DERIVED_FILE_DIR}\"/pkgx cargo build --release\n";
+			shellScript = "cd \"$DERIVED_FILE_DIR\"\n\nif ! test -d bpb/.git; then\n    rm -rf bpb  # Xcode tries to be helpful by creating the intermediary directories for us but this breaks git clone\n    git clone https://github.com/pkgxdev/bpb\n    cd bpb\nelse\n    cd bpb\n    git fetch -pft\n    git reset --hard origin/main\nfi\n\nif test \"$CONFIGURATION\" = \"Release\"; then\n    ARG=--release\nfi\n\n\"${DERIVED_FILE_DIR}\"/pkgx cargo build $ARG\n";
 			showEnvVarsInLog = 0;
 		};
 		63B188092CBD6AE30081E570 /* Download pkgx */ = {
@@ -316,6 +318,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "curl -o \"${DERIVED_FILE_DIR}\"/pkgx --compressed -f --proto '=https' https://pkgx.sh/$(uname)/$(uname -m)\nchmod +x \"${DERIVED_FILE_DIR}\"/pkgx\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
