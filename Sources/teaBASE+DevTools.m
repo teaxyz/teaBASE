@@ -227,11 +227,13 @@ NSString* getBundleIDForUTI(NSString* uti) {
 }
 
 - (void)updateInstallationStatuses {
-    for (NSPopUpButton *chooser in @[self.defaultTerminalChooser, self.defaultEditorChooser]) {
-        [chooser removeAllItems];
-        [chooser addItemWithTitle:@"Terminal.app"];
-        [chooser itemAtIndex:0].identifier = @"com.apple.terminal";
-    }
+    [self.defaultTerminalChooser removeAllItems];
+    [self.defaultTerminalChooser addItemWithTitle:@"Terminal.app"];
+    [self.defaultTerminalChooser itemAtIndex:0].identifier = @"com.apple.terminal";
+    
+    [self.defaultEditorChooser removeAllItems];
+    [self.defaultEditorChooser addItemWithTitle:@"TextEdit.app"];
+    [self.defaultEditorChooser itemAtIndex:0].identifier = @"com.apple.TextEdit";
 
     #define update_button(btn, bundleID, chooser, title) { \
         BOOL is_installed = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:bundleID] != nil; \
