@@ -35,7 +35,7 @@
         
         if (!self.dotfileDirThere) {
             NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/dotfile-sync.sh"];
-            run_in_terminal(script_path);
+            run_in_terminal(script_path, [NSBundle bundleForClass:self.class]);
         }
         
     } else {

@@ -3,9 +3,9 @@
 @implementation teaBASE (CleanInstall)
 
 - (IBAction)generateCleanInstallPack:(id)sender {
-    NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/make-clean-install-pack.command"];
+    NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/make-clean-install-pack.sh"];
 
-    run_in_terminal(script_path);
+    run_in_terminal(script_path, [NSBundle bundleForClass:self.class]);
 }
 
 - (IBAction)openCleanInstallGuide:(id)sender {

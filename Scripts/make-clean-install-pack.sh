@@ -1,7 +1,6 @@
 #!/usr/bin/env -S pkgx +gum bash>=4 -eo pipefail
 
 PREFPANE="$(cd "$(dirname "$0")"/../.. && pwd)"
-PATH="$(cd "$(dirname "$0")"/../MacOS && pwd)${PATH:+:$PATH}:/usr/local/bin:/opt/homebrew/bin"
 
 d="$(mktemp -dt teaBASE)"
 

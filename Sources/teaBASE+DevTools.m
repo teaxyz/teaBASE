@@ -169,7 +169,7 @@ static NSString* fetchLatestBrewVersion(void) {
 - (IBAction)installDocker:(NSSwitch *)sender {
     // using a terminal as the install steps requires `sudo`
     id path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/install-docker.sh"];
-    run_in_terminal(path);
+    run_in_terminal(path, [NSBundle bundleForClass:self.class]);
 }
 
 - (IBAction)openDockerHome:(id)sender {
@@ -207,7 +207,7 @@ static NSString* fetchLatestBrewVersion(void) {
     }
     
     id cmd = [NSString stringWithFormat:@"brew install --cask %@", sender.identifier];
-    run_in_terminal(cmd);
+    run_in_terminal(cmd, [NSBundle bundleForClass:self.class]);
     [sender setTitle:@"Installing…"];
     [sender setImage:[NSImage imageWithSystemSymbolName:@"circle.lefthalf.striped.horizontal.inverse" accessibilityDescription:nil]];
 }
@@ -260,7 +260,7 @@ NSString* getBundleIDForUTI(NSString* uti) {
             self.defaultEditorLabel.stringValue = title; \
         }
     
-    defaultBundleID = getBundleIDForUTI(@"public.plain-text");
+    defaultBundleID = getBundleIDForUTI(@"public.text");
     update(self.vscodeInstallButton, @"com.microsoft.VSCode", @"Visual Studio Code");
     update(self.cotEditorInstallButton, @"com.coteditor.CotEditor", @"Cot");
     update(self.zedInstallButton, @"dev.zed.Zed", @"Zed");
@@ -287,10 +287,14 @@ NSString* getBundleIDForUTI(NSString* uti) {
         
         CFStringRef bundleID = (__bridge CFStringRef)self.defaultEditorChooser.selectedItem.identifier;
         
+        self.defaultEditorLabel.stringValue = self.defaultEditorChooser.selectedItem.title;
+        
+        LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)@"public.text", kLSRolesEditor | kLSRolesViewer, bundleID);
         LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)@"public.plain-text", kLSRolesEditor | kLSRolesViewer, bundleID);
         
         if (self.addAdditionalProgrammerTextFormatsCheckbox.state == NSControlStateValueOn) {
             id utis = @[
+                @"public.plain-text",
                 @"public.swift-source",
                 @"public.geojson",
                 @"public.protobuf-source",

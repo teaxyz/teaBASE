@@ -190,9 +190,9 @@
     //TODO ^^ report as bug?
     //TODO pipe output and handle it so exit code is good
 
-    NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/github-integration.command"];
+    NSString *script_path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/github-integration.sh"];
     
-    run_in_terminal(script_path);
+    run_in_terminal(script_path, [NSBundle bundleForClass:self.class]);
     
     self.greenCheckGitHubIntegration.hidden = NO;
     [self.defaultsController.defaults setValue:@YES forKey:@"xyz.tea.BASE.integrated-GitHub"];

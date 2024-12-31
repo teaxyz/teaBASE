@@ -152,58 +152,33 @@ BOOL sudo_run_cmd(char *cmd, char *arguments[], NSString *errorTitle) {
     #undef DIE
 }
 
-BOOL run_in_terminal(NSString *input) {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *commandFilePath = nil;
-    NSError *error = nil;
+BOOL run_in_terminal(NSString *input, NSBundle *bundle) {
+    id brew = [brewPath() stringByDeletingLastPathComponent];
+    id bndl = [bundle.bundlePath stringByAppendingPathComponent:@"Contents/MacOS"];
+    id path = [NSString stringWithFormat:@"%@:%@:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", bndl, brew];
     
-    if ([input hasSuffix:@".command"] && [fileManager fileExistsAtPath:input]) {
-        // If the input is a valid `.command` file, use it directly
-        commandFilePath = input;
-    } else {
-        NSString *tempDir = [fileManager URLForDirectory:NSItemReplacementDirectory inDomain:NSUserDomainMask appropriateForURL:[NSURL fileURLWithPath:NSHomeDirectory()] create:YES error:&error].path;
-        NSString *tempFileName = [[NSUUID UUID].UUIDString stringByAppendingPathExtension:@"command"];
-        commandFilePath = [tempDir stringByAppendingPathComponent:tempFileName];
-        
-        id brew = [brewPath() stringByDeletingLastPathComponent];
-        id PATH = [NSString stringWithFormat:@"%@:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", brew];
-        
-        //NOTE we `cd /` because otherwise we seem to be executed with no current directory
-        //     which breaks a bunch of rust tools that panic when no CWD is set
-        NSString *commandContent = [NSString stringWithFormat:@"#!/bin/sh\nexport PATH=\"%@\"\ncd /\n%@\n%@\n",
-            PATH,
-            input,
-            @"# rm \"$0\"; rmdir \"$(dirname \"$0\")\""  // delete self afterwards //NOTE disabled due to weird Apple permissions on the temp dir
-        ];
-        
-        // Write the content to the temporary file
-        [commandContent writeToFile:commandFilePath
-                         atomically:YES
-                           encoding:NSUTF8StringEncoding
-                              error:&error];
-        
-        if (error) {
-            NSLog(@"teaBASE: failed to write temporary file: %@", error);
-            return NO;
-        }
-        
-        // Make the temporary file executable
-        if (![fileManager setAttributes:@{NSFilePosixPermissions: @(0755)}
-                           ofItemAtPath:commandFilePath
-                                  error:&error]) {
-            NSLog(@"teaBASE: failed to set file executable: %@", error);
-            return NO;
-        }
-    }
+    char template[] = "/tmp/teaBASE_XXXXXX.command";
+    int fd = mkstemps(template, 8);
+    write(fd, "#!/bin/sh\n", 10);
     
-    NSURL *fileURL = [NSURL fileURLWithPath:commandFilePath];
-    BOOL success = [[NSWorkspace sharedWorkspace] openURL:fileURL];
+    NSData *data = [[NSString stringWithFormat:@"export PATH='%@'\n", path] dataUsingEncoding:NSUTF8StringEncoding];
+    write(fd, data.bytes, data.length);
+    
+    data = [input dataUsingEncoding:NSUTF8StringEncoding];
+    write(fd, data.bytes, data.length);
+    
+    close(fd);
+    
+    path = [NSString stringWithUTF8String:template];
 
-    if (!success) {
+    [NSFileManager.defaultManager setAttributes:@{NSFilePosixPermissions:@(0755)} ofItemAtPath:path error:nil];
+
+    if ([NSWorkspace.sharedWorkspace openURL:[NSURL fileURLWithPath:path]]) {
+        return YES;
+    } else {
         NSLog(@"teaBASE: execution failed: %@", input);
+        return NO;
     }
-    
-    return success;
 }
 
 
