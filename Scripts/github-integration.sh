@@ -1,11 +1,4 @@
-#!/bin/bash
-
-PATH="$(cd "$(dirname "$0")"/../MacOS && pwd)${PATH:+:$PATH}"
-
-set -a
-# gh command uses git underneath for auth for some reason
-eval "$(pkgx +gh +gum +git)"
-set +a
+#!/usr/bin/env -S pkgx +gh^2 +gum +git^2 bash -eo pipefail
 
 set -eo pipefail
 

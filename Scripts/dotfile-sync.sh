@@ -153,7 +153,7 @@ prep() {
   export PATH="$BUNDLE/MacOS:${PATH:+:$PATH}"
 
   set -a
-  eval "$(pkgx +gh +gum +git)"
+  eval "$(pkgx +gh^2 +gum +git^2)"
   set +a
 
   if test "$VERBOSE"; then

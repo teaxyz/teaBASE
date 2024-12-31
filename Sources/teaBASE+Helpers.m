@@ -65,8 +65,18 @@
 }
 
 - (BOOL)pkgxInstalled {
-    //TODO need to check more locations
-    return [NSFileManager.defaultManager isReadableFileAtPath:@"/usr/local/bin/pkgx"];
+    NSArray *locations = @[
+        @"/usr/local/bin/pkgx", // system-wide
+        [NSString stringWithFormat:@"%@/.local/bin/pkgx", NSHomeDirectory()] // user-specific
+    ];
+    
+    NSFileManager *fm = NSFileManager.defaultManager;
+    for (NSString *path in locations) {
+        if ([fm isExecutableFileAtPath:path]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (IBAction)modalCancel:(NSButton *)sender {

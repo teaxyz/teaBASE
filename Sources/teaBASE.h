@@ -123,7 +123,7 @@
 BOOL run(NSString *cmd, NSArray *args, NSPipe *pipe);
 BOOL file_contains(NSString *path, NSString *token);
 BOOL sudo_run_cmd(char *cmd, char *arguments[], NSString *errorTitle);
-BOOL run_in_terminal(NSString *cmd);
+BOOL run_in_terminal(NSString *cmd, NSBundle *bundle);
 NSString *output(NSString *cmd, NSArray *args);
 NSString *which(NSString *cmd);
 NSString *brewPath(void);

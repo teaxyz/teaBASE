@@ -10,6 +10,7 @@ TMP_MOUNT=$(mktemp -d)
 # Mount the DMG silently
 hdiutil attach "$DMG_PATH" -mountpoint "$TMP_MOUNT" -nobrowse -quiet
 
+#TODO use `ditto`
 rsync -a --delete "$TMP_MOUNT/teaBASE.prefPane/" "$OUTPUT_DIR/"
 
 # Unmount the DMG

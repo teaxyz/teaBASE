@@ -169,7 +169,7 @@ static NSString* fetchLatestBrewVersion(void) {
 - (IBAction)installDocker:(NSSwitch *)sender {
     // using a terminal as the install steps requires `sudo`
     id path = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/Scripts/install-docker.sh"];
-    run_in_terminal(path);
+    run_in_terminal(path, [NSBundle bundleForClass:self.class]);
 }
 
 - (IBAction)openDockerHome:(id)sender {
@@ -198,10 +198,23 @@ static NSString* fetchLatestBrewVersion(void) {
 }
 
 - (IBAction)installCaskItem:(NSButton *)sender {
-    id cmd = [NSString stringWithFormat:@"brew install --cask %@", sender.identifier];
-    run_in_terminal(cmd);
-    [sender setTitle:@"Installing…"];
-    [sender setImage:[NSImage imageWithSystemSymbolName:@"circle.lefthalf.striped.horizontal.inverse" accessibilityDescription:nil]];
+    if (sender.imagePosition == NSNoImage) {
+        [[NSWorkspace sharedWorkspace] openURLs:@[] withAppBundleIdentifier:sender.toolTip options:NSWorkspaceLaunchDefault
+                 additionalEventParamDescriptor:nil launchIdentifiers:nil];
+    } else {
+        if (![NSFileManager.defaultManager isExecutableFileAtPath:brewPath()]) {
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = @"Prerequisite Unsatisfied";
+            alert.informativeText = @"Homebrew must be installed first.";
+            [alert runModal];
+            return;
+        }
+        
+        id cmd = [NSString stringWithFormat:@"brew install --cask %@", sender.identifier];
+        run_in_terminal(cmd, [NSBundle bundleForClass:self.class]);
+        [sender setTitle:@"Installing…"];
+        [sender setImage:[NSImage imageWithSystemSymbolName:@"circle.lefthalf.striped.horizontal.inverse" accessibilityDescription:nil]];
+    }
 }
 
 NSString* getBundleIDForUTI(NSString* uti) {
@@ -219,17 +232,19 @@ NSString* getBundleIDForUTI(NSString* uti) {
 }
 
 - (void)updateInstallationStatuses {
-    for (NSPopUpButton *chooser in @[self.defaultTerminalChooser, self.defaultEditorChooser]) {
-        [chooser removeAllItems];
-        [chooser addItemWithTitle:@"Terminal.app"];
-        [chooser itemAtIndex:0].identifier = @"com.apple.terminal";
-    }
+    [self.defaultTerminalChooser removeAllItems];
+    [self.defaultTerminalChooser addItemWithTitle:@"Terminal.app"];
+    [self.defaultTerminalChooser itemAtIndex:0].identifier = @"com.apple.terminal";
+    
+    [self.defaultEditorChooser removeAllItems];
+    [self.defaultEditorChooser addItemWithTitle:@"TextEdit.app"];
+    [self.defaultEditorChooser itemAtIndex:0].identifier = @"com.apple.TextEdit";
 
     #define update_button(btn, bundleID, chooser, title) { \
         BOOL is_installed = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:bundleID] != nil; \
-        [btn setTitle:is_installed ? @"Installed" : @"Install"]; \
+        [btn setTitle:is_installed ? @"Open" : @"Install"]; \
         [btn setImage:[NSImage imageWithSystemSymbolName:is_installed ? @"checkmark.circle" : @"arrow.down.circle" accessibilityDescription:nil]]; \
-        [btn setEnabled:!is_installed]; \
+        [btn setImagePosition:is_installed ? NSNoImage : NSImageLeft]; \
         if (is_installed) [chooser addItemWithTitle:title]; \
         if ([defaultBundleID isEqualToString:bundleID]) [chooser selectItemWithTitle:title]; \
         [chooser itemWithTitle:title].identifier = bundleID; \
@@ -250,7 +265,7 @@ NSString* getBundleIDForUTI(NSString* uti) {
             self.defaultEditorLabel.stringValue = title; \
         }
     
-    defaultBundleID = getBundleIDForUTI(@"public.plain-text");
+    defaultBundleID = getBundleIDForUTI(@"public.text");
     update(self.vscodeInstallButton, @"com.microsoft.VSCode", @"Visual Studio Code");
     update(self.cotEditorInstallButton, @"com.coteditor.CotEditor", @"Cot");
     update(self.zedInstallButton, @"dev.zed.Zed", @"Zed");
@@ -277,10 +292,14 @@ NSString* getBundleIDForUTI(NSString* uti) {
         
         CFStringRef bundleID = (__bridge CFStringRef)self.defaultEditorChooser.selectedItem.identifier;
         
+        self.defaultEditorLabel.stringValue = self.defaultEditorChooser.selectedItem.title;
+        
+        LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)@"public.text", kLSRolesEditor | kLSRolesViewer, bundleID);
         LSSetDefaultRoleHandlerForContentType((__bridge CFStringRef)@"public.plain-text", kLSRolesEditor | kLSRolesViewer, bundleID);
         
         if (self.addAdditionalProgrammerTextFormatsCheckbox.state == NSControlStateValueOn) {
             id utis = @[
+                @"public.plain-text",
                 @"public.swift-source",
                 @"public.geojson",
                 @"public.protobuf-source",

@@ -82,30 +82,37 @@ xcodebuild \
   EXCLUDED_ARCHS="" \
   build
 
-BPB_DIR="$PWD/build/Build/Intermediates.noindex/teaBASE.build/Release/teaBASE.build/DerivedSources/bpb"
+BPB_DIR="$PWD/Build/Build/Intermediates.noindex/teaBASE.build/Release/teaBASE.build/DerivedSources/bpb"
 pushd "$BPB_DIR"
 rustup target add x86_64-apple-darwin
 ~/.cargo/bin/cargo build --release --target x86_64-apple-darwin
 popd
 
 lipo -create \
-  -output build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/bpb \
+  -output ./Build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/bpb \
   "$BPB_DIR"/target/release/bpb \
   "$BPB_DIR"/target/x86_64-apple-darwin/release/bpb
 
-curl https://pkgx.sh/Darwin/x86_64 -o build/pkgx_intel
+curl https://pkgx.sh/Darwin/x86_64 -o ./Build/pkgx_intel
 
 lipo -create \
   -output build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/pkgx \
-  build/pkgx_intel \
-  build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/pkgx
+  ./Build/pkgx_intel \
+  ./Build/Build/Products/Release/teaBASE.prefPane/Contents/MacOS/pkgx
+
+codesign \
+  --entitlements ./Build/Build/Intermediates.noindex/teaBASE.build/Release/teaBASE.build/DerivedSources/cdto/Sources/cd_to.entitlements \
+  --deep --force \
+  --options runtime \
+  --sign "Developer ID Application: Tea Inc. (7WV56FL599)" \
+  ./Build/Build/Products/Release/teaBASE.prefPane/Contents/Resources/cd\ to.app/
 
 codesign \
   --entitlements ./Sundries/teaBASE.entitlements \
   --deep --force \
   --options runtime \
   --sign "Developer ID Application: Tea Inc. (7WV56FL599)" \
-  build/Build/Products/Release/teaBASE.prefPane
+  ./Build/Build/Products/Release/teaBASE.prefPane
 
 rm -f teaBASE-$v_new.dmg
 
@@ -114,13 +121,13 @@ create-dmg \
   --window-size 435 435 \
   --window-pos 538 273 \
   --filesystem APFS \
-  --format UDZO \
+  --format ULFO \
   --background ./Resources/dmg-bg@2x.png \
   --icon teaBASE.prefPane 217.5 223.5 \
   --hide-extension teaBASE.prefPane \
   --icon-size 100 \
   teaBASE-$v_new.dmg \
-  build/Build/Products/Release/teaBASE.prefPane
+  ./Build/Build/Products/Release/teaBASE.prefPane
 
 codesign \
   --force \
