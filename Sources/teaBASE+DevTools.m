@@ -198,18 +198,23 @@ static NSString* fetchLatestBrewVersion(void) {
 }
 
 - (IBAction)installCaskItem:(NSButton *)sender {
-    if (![NSFileManager.defaultManager isExecutableFileAtPath:brewPath()]) {
-        NSAlert *alert = [NSAlert new];
-        alert.messageText = @"Prerequisite Unsatisfied";
-        alert.informativeText = @"Homebrew must be installed first.";
-        [alert runModal];
-        return;
+    if (sender.imagePosition == NSNoImage) {
+        [[NSWorkspace sharedWorkspace] openURLs:@[] withAppBundleIdentifier:sender.toolTip options:NSWorkspaceLaunchDefault
+                 additionalEventParamDescriptor:nil launchIdentifiers:nil];
+    } else {
+        if (![NSFileManager.defaultManager isExecutableFileAtPath:brewPath()]) {
+            NSAlert *alert = [NSAlert new];
+            alert.messageText = @"Prerequisite Unsatisfied";
+            alert.informativeText = @"Homebrew must be installed first.";
+            [alert runModal];
+            return;
+        }
+        
+        id cmd = [NSString stringWithFormat:@"brew install --cask %@", sender.identifier];
+        run_in_terminal(cmd, [NSBundle bundleForClass:self.class]);
+        [sender setTitle:@"Installing…"];
+        [sender setImage:[NSImage imageWithSystemSymbolName:@"circle.lefthalf.striped.horizontal.inverse" accessibilityDescription:nil]];
     }
-    
-    id cmd = [NSString stringWithFormat:@"brew install --cask %@", sender.identifier];
-    run_in_terminal(cmd, [NSBundle bundleForClass:self.class]);
-    [sender setTitle:@"Installing…"];
-    [sender setImage:[NSImage imageWithSystemSymbolName:@"circle.lefthalf.striped.horizontal.inverse" accessibilityDescription:nil]];
 }
 
 NSString* getBundleIDForUTI(NSString* uti) {
@@ -237,9 +242,9 @@ NSString* getBundleIDForUTI(NSString* uti) {
 
     #define update_button(btn, bundleID, chooser, title) { \
         BOOL is_installed = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:bundleID] != nil; \
-        [btn setTitle:is_installed ? @"Installed" : @"Install"]; \
+        [btn setTitle:is_installed ? @"Open" : @"Install"]; \
         [btn setImage:[NSImage imageWithSystemSymbolName:is_installed ? @"checkmark.circle" : @"arrow.down.circle" accessibilityDescription:nil]]; \
-        [btn setEnabled:!is_installed]; \
+        [btn setImagePosition:is_installed ? NSNoImage : NSImageLeft]; \
         if (is_installed) [chooser addItemWithTitle:title]; \
         if ([defaultBundleID isEqualToString:bundleID]) [chooser selectItemWithTitle:title]; \
         [chooser itemWithTitle:title].identifier = bundleID; \

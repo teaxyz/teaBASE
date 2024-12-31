@@ -1094,7 +1094,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button identifier="Warp" translatesAutoresizingMaskIntoConstraints="NO" id="tKA-V9-VJJ">
+                                        <button identifier="Warp" toolTip="dev.warp.Warp-Stable" translatesAutoresizingMaskIntoConstraints="NO" id="tKA-V9-VJJ">
                                             <rect key="frame" x="117" y="393" width="64" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Install" bezelStyle="inline" image="arrow.down.circle" catalog="system" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="g20-E0-y8p">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1105,7 +1105,7 @@
                                                 <action selector="installCaskItem:" target="-2" id="Nao-p7-3Py"/>
                                             </connections>
                                         </button>
-                                        <button identifier="Hyper" translatesAutoresizingMaskIntoConstraints="NO" id="GvP-IF-tNj">
+                                        <button identifier="Hyper" toolTip="co.zeit.Hyper" translatesAutoresizingMaskIntoConstraints="NO" id="GvP-IF-tNj">
                                             <rect key="frame" x="122" y="325" width="48" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Install" bezelStyle="inline" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="GLr-jj-wqb">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1139,7 +1139,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button identifier="iTerm2" translatesAutoresizingMaskIntoConstraints="NO" id="2v6-dn-6Mu">
+                                        <button identifier="iTerm2" toolTip="com.googlecode.iterm2" translatesAutoresizingMaskIntoConstraints="NO" id="2v6-dn-6Mu">
                                             <rect key="frame" x="127" y="257" width="77" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Installed" bezelStyle="inline" image="checkmark.circle" catalog="system" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="5Of-72-2BX">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1335,7 +1335,7 @@
                                         <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="DD5-9k-ygw">
                                             <rect key="frame" x="-3" y="100" width="450" height="5"/>
                                         </box>
-                                        <button identifier="CotEditor" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-vV-HWL">
+                                        <button identifier="CotEditor" toolTip="com.coteditor.CotEditor" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-vV-HWL">
                                             <rect key="frame" x="106" y="289" width="48" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Install" bezelStyle="inline" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="LNF-BK-Gxv">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1377,7 +1377,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button identifier="Zed" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0KE-kL-tKw">
+                                        <button identifier="Zed" toolTip="dev.zed.Zed" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0KE-kL-tKw">
                                             <rect key="frame" x="108" y="221" width="48" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Install" bezelStyle="inline" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="cty-0d-dAo">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1403,7 +1403,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button identifier="visual-studio-code" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aND-b7-utG">
+                                        <button identifier="visual-studio-code" toolTip="com.microsoft.VSCode" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aND-b7-utG">
                                             <rect key="frame" x="202" y="357" width="64" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Install" bezelStyle="inline" image="checkmark.circle" catalog="system" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="FvV-x9-yEt">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1415,7 +1415,7 @@
                                                 <action selector="installCaskItem:" target="-2" id="GKW-f6-fNR"/>
                                             </connections>
                                         </button>
-                                        <button identifier="Cursor" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9e8-ea-8Qm">
+                                        <button identifier="Cursor" toolTip="com.todesktop.230313mzl4w4u92" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9e8-ea-8Qm">
                                             <rect key="frame" x="126" y="153" width="48" height="18"/>
                                             <buttonCell key="cell" type="inline" title="Install" bezelStyle="inline" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="KuY-YM-xNL">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
