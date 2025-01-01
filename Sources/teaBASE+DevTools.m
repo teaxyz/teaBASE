@@ -300,6 +300,7 @@ NSString* getBundleIDForUTI(NSString* uti) {
         if (self.addAdditionalProgrammerTextFormatsCheckbox.state == NSControlStateValueOn) {
             id utis = @[
                 @"public.plain-text",
+                @"public.source-code",
                 @"public.swift-source",
                 @"public.geojson",
                 @"public.protobuf-source",
@@ -337,6 +338,7 @@ NSString* getBundleIDForUTI(NSString* uti) {
                 @"public.xml",
                 @"net.daringfireball.markdown",
                 @"public.json",
+                @"public.json.jsonc",
                 @"public.yaml",
                 @"public.css",
                 @"com.microsoft.typescript",
@@ -344,6 +346,7 @@ NSString* getBundleIDForUTI(NSString* uti) {
                 @"org.lua.lua-source",
                 @"com.netscape.javascript-source",
                 @"org.rust-lang.rust-script",
+                @"org.rust-lang.rust",
                 @"public.html",  //NOTE doesn't seem to stick
                 @"org.golang.go-script",
                 @"public.comma-separated-values-text",
@@ -354,7 +357,8 @@ NSString* getBundleIDForUTI(NSString* uti) {
                 @"public.toml",
                 @"com.microsoft.ini",
                 @"public.patch-file",
-                @"dev.dart.dart-script"
+                @"dev.dart.dart-script",
+                @"public.mpeg-2-transport-stream", // steals .ts extensions
             ];
             
             for (id uti in utis) {
