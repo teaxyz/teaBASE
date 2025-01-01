@@ -2545,7 +2545,7 @@ DQ
         <image name="Warp" width="48" height="48"/>
         <image name="Wordmark" width="278" height="39"/>
         <image name="Zed" width="48" height="48"/>
-        <image name="`cd to.app` Screenshot" width="450" height="59.5"/>
+        <image name="`cd to.app` Screenshot" width="450" height="70.5"/>
         <image name="arrow.down.circle" catalog="system" width="15" height="15"/>
         <image name="checkmark.circle" catalog="system" width="15" height="15"/>
         <image name="checkmark.circle.fill" catalog="system" width="15" height="15"/>
