@@ -27,7 +27,7 @@
 - (void)updateGitGudListing {
     NSString *pkgx = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:@"Contents/MacOS/pkgx"];
     
-    //FIXME deno will cache this permanantly, we need to version it or pkg this properly
+    //FIXME deno will cache this permanently, we need to version it or pkg this properly
     id url = @"https://raw.githubusercontent.com/pkgxdev/git-gud/refs/heads/main/src/app.ts";
 
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
