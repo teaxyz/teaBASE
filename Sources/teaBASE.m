@@ -172,7 +172,7 @@
     NSString *encodedMessage = [message stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     // Construct the full URL
-    NSString *urlString = [NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=%@", encodedMessage];
+    NSString *urlString = [NSString stringWithFormat:@"https://x.com/intent/tweet?text=%@", encodedMessage];
     NSURL *url = [NSURL URLWithString:urlString];
 
     // Open the URL
