@@ -18,7 +18,7 @@ by signing your commits.
 
 <img src='https://teaxyz.github.io/teaBASE/img/secure-dev.png' width=477>
 
-Our `gpg` signing is best in class secure with way less bloat, hassle and
+Our `gpg` signing is best-in-class secure with way less bloat, hassle and
 overhead than GNU’s GPG suite.
 
 > [!TIP]
@@ -36,7 +36,7 @@ overhead than GNU’s GPG suite.
 
 ## Git Add-Ons
 
-A [fork scaled] “package manager” for the vibrant Git ecosystem.
+A [fork-scaled] “package manager” for the vibrant Git ecosystem.
 
 <img src='https://teaxyz.github.io/teaBASE/img/git-addons.png' width=479>
 
@@ -119,7 +119,7 @@ configuration tools. If you disagree we’d like to hear your take though.
 
 ### Why is this Written in Objective-C rather than Swift?
 
-Preference Panes are old school and the continued integration of them into
+Preference Panes are old-school and the continued integration of them into
 macOS is not well documented nor well supported. We didn’t want to risk
 potential deployment hassles by choosing Swift here even though we would
 prefer Swift.

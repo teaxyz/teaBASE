@@ -2,7 +2,7 @@
 
 ## Why Clean Install?
 
-As developers we install a lot of software. Every item could potentially
+As developers, we install a lot of software. Every item could potentially
 contain malware. The only way to be sure your system isn’t compromised is
 a fresh installation.
 
@@ -26,7 +26,7 @@ Before clean installing generate your clean install pack with teaBASE.
 > automatically.
 
 > [!IMPORTANT]
-> Transfer your pack external storage before clean installing! A USB key or
+> Transfer your pack to external storage before clean installing! A USB key or
 > another computer are good.
 
 Once macOS is clean installed, transfer the pack back and open it. The bundled
@@ -36,7 +36,7 @@ Once macOS is clean installed, transfer the pack back and open it. The bundled
 
 Nowadays the majority of data and settings are stored in the cloud.
 However, some apps will certainly lose settings as part of a clean install.
-The important thing is your data and dotfiles are restored.
+The important thing is that your data and dotfiles are restored.
 
 > [!NOTE]
 > You can take advantage of this to explore your apps with a clean slate.
