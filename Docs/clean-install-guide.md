@@ -3,15 +3,15 @@
 ## Why Clean Install?
 
 As developers, we install a lot of software. Every item could potentially
-contain malware. The only way to be sure your system isn’t compromised is
-a fresh installation.
+contain malware. The only way to be sure Your system isn't compromised is
+A fresh installation.
 
 It is also good to practice your restoration flow for disaster scenarios, like
 losing your computer or hardware failure.
 
 ## How to Clean Install
 
-macOS makes it easy to do a clean install. In System Settings go to “General”,
+macOS makes it easy to do a clean install. In System Settings, go to “General”,
 “Transfer or Reset” and click “Erase All Content and Settings”.
 
 ## Using teaBASE’s “Clean Install Pack”
@@ -19,24 +19,24 @@ macOS makes it easy to do a clean install. In System Settings go to “General�
 Before clean installing generate your clean install pack with teaBASE.
 
 > [!INFO]
-> Add all files that are not otherwise backed up to cloud services, eg. the
+> Add all files that are not otherwise backed up to cloud services, e.g. the
 > working sources for your projects.
 >
 > Take advantage of things like iCloud Drive to have other documents restored
 > automatically.
 
 > [!IMPORTANT]
-> Transfer your pack to external storage before clean installing! A USB key or
+> Transfer your pack to external storage before performing a clean install! A USB key or
 > another computer are good.
 
 Once macOS is clean installed, transfer the pack back and open it. The bundled
-`restore` script will reinstall your packages, apps and dotfile configuration.
+`restore` script will reinstall your packages, apps, and dotfile configuration.
 
 ## Restoring Other Settings
 
 Nowadays the majority of data and settings are stored in the cloud.
 However, some apps will certainly lose settings as part of a clean install.
-The important thing is that your data and dotfiles are restored.
+The important thing is that Your data and dotfiles will be restored.
 
 > [!NOTE]
 > You can take advantage of this to explore your apps with a clean slate.
