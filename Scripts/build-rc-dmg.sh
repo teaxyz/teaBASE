@@ -28,7 +28,7 @@ codesign \
 
 rm -f teaBASE-$v.dmg
 
-#NOTE UDZO is half the size of the supposedly “better” ULMO
+#NOTE UDZO is half the size of the supposedly “better” ULFO
 
 create-dmg \
   --volname "teaBASE v$1" \
