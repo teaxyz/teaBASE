@@ -32,9 +32,12 @@ git fetch origin -pft
 git push origin main
 
 versions="$(git tag | grep '^v[0-9]\+\.[0-9]\+\.[0-9]\+')"
-v_latest="$(npx -- semver --include-prerelease $versions | tail -n1)"
+v_latest="$(npx --yes -- semver --include-prerelease $versions | tail -n1)"
 
 case $1 in
+clobber)
+  v_new=$v_latest
+  ;;
 major|minor|patch|prerelease)
   v_new=$(npx -- semver bump $v_latest --increment $1)
   ;;
@@ -42,7 +45,7 @@ major|minor|patch|prerelease)
   echo "usage $0 <major|minor|patch|prerelease|VERSION>" >&2
   exit 1;;
 *)
-  if test "$(npx -- semver """$1""")" != "$1"; then
+  if test "$(npx --yes -- semver """$1""")" != "$1"; then
     echo "$1 doesn't look like valid semver."
     exit 1
   fi
@@ -50,12 +53,14 @@ major|minor|patch|prerelease)
   ;;
 esac
 
-if [ $v_new = $v_latest ]; then
+if [ $v_new = $v_latest ] && [ "$1" != clobber ]; then
   echo "$v_new already exists!" >&2
   exit 1
 fi
 
-if ! gh release view v$v_new >/dev/null 2>&1; then
+if [ "$1" == clobber ]; then
+  true
+elif ! gh release view v$v_new >/dev/null 2>&1; then
   gum confirm "prepare draft release for $v_new?" || exit 1
 
   gh release create \
@@ -147,13 +152,15 @@ gh release upload --clobber v$v_new teaBASE-$v_new.dmg
 
 gh release view v$v_new
 
-gum confirm "draft prepared, release $v_new?" || exit 1
+if [ "$1" != clobber ]; then
+  gum confirm "draft prepared, release $v_new?" || exit 1
 
-gh release edit \
-  v$v_new \
-  --verify-tag \
-  --latest \
-  --draft=false \
+  gh release edit \
+    v$v_new \
+    --verify-tag \
+    --latest \
+    --draft=false \
   --discussion-category=Announcements
+fi
 
 gh release view v$v_new --web
