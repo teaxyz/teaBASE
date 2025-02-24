@@ -32,7 +32,7 @@ datahome="${datahome#/}"
 dotfiles=()
 
 # note, not space safe
-#TODO some of these eg. .config/git/config are XDG aware
+#TODO some of these e.g. .config/git/config are XDG aware
 for x in .aws/* \
   .bash_login \
   .bash_history \
