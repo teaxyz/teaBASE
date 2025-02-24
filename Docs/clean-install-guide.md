@@ -19,7 +19,7 @@ macOS makes it easy to do a clean install. In System Settings go to â€œGeneralâ€
 Before clean installing generate your clean install pack with teaBASE.
 
 > [!INFO]
-> Add all files that are not otherwise backed up to cloud services, eg. the
+> Add all files that are not otherwise backed up to cloud services, e.g. the
 > working sources for your projects.
 >
 > Take advantage of things like iCloud Drive to have other documents restored
@@ -27,7 +27,7 @@ Before clean installing generate your clean install pack with teaBASE.
 
 > [!IMPORTANT]
 > Transfer your pack to external storage before clean installing! A USB key or
-> another computer are good.
+> another computer is good.
 
 Once macOS is clean installed, transfer the pack back and open it. The bundled
 `restore` script will reinstall your packages, apps and dotfile configuration.
