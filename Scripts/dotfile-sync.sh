@@ -133,7 +133,7 @@ push() {
   git add .zshenv
   git add .zshrc
 
-  ## we don’t do .*/**/config as it tends to pick up files in cached cloned repos (eg. cargo)
+  ## we don’t do .*/**/config as it tends to pick up files in cached cloned repos (e.g. cargo)
   for x in .*/config "$cnf/**/config"; do
     if test -f "$x"; then
       git add "$x"
