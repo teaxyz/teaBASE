@@ -3,7 +3,7 @@
 cd "$(dirname "$0")/.."
 
 if ! test "$1"; then
-  echo "usage $0 <VERSION>" >&2
+  echo "usage: $0 <VERSION>" >&2
   exit 1
 fi
 
