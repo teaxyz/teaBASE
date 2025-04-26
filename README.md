@@ -123,3 +123,7 @@ Preference Panes are old-school and the continued integration of them into
 macOS is not well documented nor well supported. We didn’t want to risk
 potential deployment hassles by choosing Swift here even though we would
 prefer Swift.
+## TypeScript Support
+These types are available via:
+`ash
+npm install --save-dev @types/teabase
