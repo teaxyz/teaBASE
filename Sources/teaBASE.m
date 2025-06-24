@@ -2,7 +2,7 @@
 
 @interface teaBASE ()
 @property (nonatomic) BOOL isInitializing;
-@property (weak) IBOutlet NSSwitch *testSwitch; // ✅ Property for the new switch
+@property (weak) IBOutlet NSSwitch *testSwitch;
 @end
 
 @implementation teaBASE
@@ -23,7 +23,7 @@
     [self.dotfileSyncSwitch setEnabled:NO];
     [self.dotfileSyncEditWhitelistButton setEnabled:NO];
     [self.dotfileSyncViewRepoButton setEnabled:NO];
-    [self.testSwitch setEnabled:NO]; // ✅ Disable the new switch initially
+    [self.testSwitch setEnabled:NO];
 
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -74,7 +74,7 @@
             [self.pkgxSwitch setEnabled:YES];
             [self.xcodeCLTSwitch setEnabled:YES];
             [self.dotfileSyncSwitch setEnabled:YES];
-            [self.testSwitch setEnabled:YES]; // ✅ Enable the new switch
+            [self.testSwitch setEnabled:YES];
 
             BOOL dotfileSyncActive = self.dotfileSyncSwitch.state == NSControlStateValueOn;
             [self.dotfileSyncEditWhitelistButton setEnabled:dotfileSyncActive];
@@ -156,7 +156,7 @@
     [self.installGitButton setHidden:git_out != nil];
 }
 
-- (IBAction)onTestSwitchChanged:(NSSwitch *)sender { // ✅ The switch method
+- (IBAction)onTestSwitchChanged:(NSSwitch *)sender {
     if (sender.state == NSControlStateValueOn) {
         NSLog(@"Test switch is ON");
     } else {
